@@ -1,7 +1,7 @@
 <script setup>
 import { useSlideContext } from '@slidev/client'
 const { $slidev } = useSlideContext()
-defineProps({ page: Number, note: { type: String, default: 'Hektor Agent / Management proposal' }, source: String })
+defineProps({ page: Number, note: { type: String, default: 'Hektor Demo / Kundnytta och avlastning' }, source: String })
 </script>
 
 <template>

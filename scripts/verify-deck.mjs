@@ -61,6 +61,8 @@ try {
         const svg = host.shadowRoot?.querySelector('svg')
         if (!svg || svg.querySelector('.error-icon, .error-text')) { issues.push('Mermaid missing or parse error'); continue }
         const r = svg.getBoundingClientRect()
+        const slot = host.closest('.voice-diagram')?.getBoundingClientRect()
+        if (slot && (r.top < slot.top - 1 || r.bottom > slot.bottom + 1)) issues.push('Mermaid extends beyond its layout slot')
         const headingBottom = root.querySelector('h1')?.getBoundingClientRect().bottom ?? bounds.top
         if (r.left < bounds.left - 1 || r.right > bounds.right + 1 || r.top < headingBottom || (footer && r.bottom > footer.top - 4)) issues.push('Mermaid bounds / heading or footer collision')
         for (const label of svg.querySelectorAll('text, foreignObject')) {

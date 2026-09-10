@@ -313,6 +313,52 @@
 }
 
 /* Voice proposal: editable layouts, with diagrams kept as Mermaid source. */
+/* Hektor Demo: Swedish, management-facing value narrative. */
+.sv-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+.sv-cards section { background: #edf3ed; border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+.sv-cards h2 { font-size: 27px; margin: 22px 0 14px; }
+.sv-cards p { font-size: 19px; line-height: 1.5; }
+.sv-band { border-left: 3px solid #4e8a63; background: #e8f0e8; color: #365a41; padding: 12px 20px; margin-top: 20px; font-size: 19px; line-height: 1.45; }
+.sv-band b { margin-right: 10px; }
+.sv-before-after { display: grid; grid-template-columns: 1fr 55px 1fr; align-items: center; margin-top: 32px; }
+.sv-before-after section { padding: 29px; border: 1px solid var(--line); border-radius: 12px; }
+.sv-before-after .sv-after { background: #e3eee3; border-color: #b2cbb6; }
+.sv-before-after h2 { margin: 18px 0; font-size: 29px; }
+.sv-before-after p { font-size: 20px; }
+.sv-between { text-align: center; color: #61856b; }
+.sv-task-tags { display: flex; gap: 8px; margin-top: 23px; }
+.sv-task-tags span { font-size: 12px; background: #dce8dc; border-radius: 20px; padding: 7px 12px; color: #47684f; }
+.sv-note-example { border-top: 1px solid var(--line); padding-top: 18px; }
+.slidev-layout:has(.sv-note-example) .sv-diagram { height: 200px; }
+.sv-note-example p { margin-top: 12px; font-size: 20px; }
+.sv-value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 38px; margin-top: 34px; }
+.sv-value-grid section { display: flex; gap: 23px; align-items: flex-start; border-top: 2px solid #92b69d; padding-top: 24px; }
+.sv-value-grid section > span { color: #749880; font-size: 17px; padding-top: 4px; }
+.sv-value-grid h2 { font-size: 28px; margin-bottom: 13px; }
+.sv-value-grid p { font-size: 21px; }
+.slidev-layout:has(.sv-cover), .slidev-layout:has(.sv-close) { background: var(--forest); --ink: #f5faf6; --muted: #b7cfc3; --line: #34554a; --green: #72e0b3; color: var(--ink); }
+.slidev-layout:has(.sv-cover) h1 { font-size: 82px; letter-spacing: -3px; margin-top: 20px; }
+.sv-cover { display: grid; grid-template-columns: 1.15fr 1fr; gap: 50px; margin-top: 22px; }
+.slidev-layout .sv-cover-lead { font-size: 29px; color: #e7f2e9; line-height: 1.4; }
+.sv-cover-channels { display: flex; gap: 12px; margin-top: 30px; }
+.sv-cover-channels span { border: 1px solid #557766; border-radius: 22px; padding: 8px 18px; font-size: 16px; color: #c5e3d1; }
+.slidev-layout .sv-cover-note { font-size: 19px; margin-top: 30px; line-height: 1.6; }
+.sv-cover-orbit { padding: 23px; border: 1px solid #436858; border-radius: 20px; background: #193e31; }
+.sv-orbit-core { display: flex; flex-direction: column; gap: 12px; align-items: center; padding: 10px 15px 25px; }
+.sv-orbit-core .deck-icon { width: 40px; height: 40px; color: #72e0b3; }
+.sv-orbit-core strong { font-size: 34px; font-weight: 600; letter-spacing: -1px; }
+.sv-orbit-core > span { color: #acd1ba; font-size: 15px; }
+.sv-orbit-outcomes { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #436858; padding-top: 22px; }
+.sv-orbit-outcomes span { font-size: 15px; text-align: center; color: #d1e7d8; }
+.sv-close { display: grid; grid-template-columns: .9fr 1.1fr; gap: 45px; margin-top: 53px; }
+.sv-close-price { display: flex; gap: 22px; align-items: center; border-right: 1px solid #456758; padding-right: 25px; }
+.sv-close-one { color: #72e0b3; font-size: 145px; line-height: 1; font-weight: 600; letter-spacing: -8px; }
+.sv-close-price strong { font-size: 30px; font-weight: 600; }
+.sv-close-price p { font-size: 24px; margin-top: 16px; line-height: 1.5; }
+.sv-close-value h2 { font-size: 34px; color: #e2f4e5; line-height: 1.22; letter-spacing: -.9px; }
+.sv-close-value p { font-size: 20px; margin-top: 23px; line-height: 1.6; }
+.sv-close-bottom { display: flex; justify-content: space-between; border-top: 1px solid #34554a; padding-top: 22px; margin-top: 37px; color: #b7d9c5; font-size: 16px; }
+.sv-close-bottom span { color: #e2f4e5; }
 .chapter-nav { gap: 16px; }
 .chapter-nav > span { gap: 5px; font-size: 10px; }
 .proposal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }

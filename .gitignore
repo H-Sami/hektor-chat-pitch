@@ -21,6 +21,6 @@ node_modules/
 .*-log.txt
 
 # keep the rendered artifacts that ship with the deck
-!Hektor-AI-Chat-Pitch.pdf
+!Hektor-Demo.pdf
 !mockup/shots/*.png
 !mockup/shots/*.jpg
