@@ -1,5 +1,7 @@
 # Hektor Agent pitch
 
+**Svenska Hektor Demo:** [Öppna presentationen](https://h-sami.github.io/hektor-chat-pitch/hektor-demo/) · [Ladda ner PDF](https://h-sami.github.io/hektor-chat-pitch/hektor-demo/Hektor-Demo.pdf)
+
 A 26-slide management proposal: 20 main slides covering web chat, Swedish telephone support and reviewed staff dictation, followed by six appendix slides. This is a proposed extension, not a working telephone integration.
 
 The editable presentation is in **slides.md**. Its design preserves the forest-green/light palette, Segoe UI typography and 16:9 format. Shared styling is in **style.css**; reusable headers, dynamic footers, vector icons and the schedule chart are in **components/**. New architecture diagrams remain editable Mermaid. Each slide has presenter notes. No Slidev MCP is required.
@@ -45,28 +47,30 @@ The output is `Hektor-AI-Chat-Pitch.pdf`, kept in Git as the offline presentatio
 
 ## Repository and publishing
 
-Two decks are published from this one repository:
+Three decks are published from this repository:
 
 | URL | Source | Deck |
 |---|---|---|
 | https://h-sami.github.io/hektor-chat-pitch/ | `main` | The 26-slide deck |
-| https://h-sami.github.io/hektor-chat-pitch/demo-v2/ | `demo-v2` | The 18-slide value-first cut |
+| https://h-sami.github.io/hektor-chat-pitch/demo-v2/ | `demo-v2` | The 17-slide value-first cut |
+| https://h-sami.github.io/hektor-chat-pitch/hektor-demo/ | `hektor-demo-sv` | Hektor Demo: 14 slides in Swedish |
 
-GitHub Pages allows only one source per repository, and a branch source cannot serve two branches. So publishing is done by the workflow in `.github/workflows/publish-decks.yml`, which builds **both** refs and deploys them together as a single Pages artifact. The Pages source is therefore set to **GitHub Actions**, not a branch.
+The workflow in `.github/workflows/publish-decks.yml` builds all three refs and deploys them together as one Pages artifact. Every build is required; if a version fails, deployment stops and the existing site remains in place. The Pages source is **GitHub Actions**. PDF downloads and direct numbered slide links are included for every version.
 
 ### Updating a deck
 
-- **`main`**: edit, commit, push. The workflow rebuilds and redeploys both decks automatically.
-- **`demo-v2`**: edit, commit, push. Nothing deploys automatically, because every deploy replaces the whole site and an ungated `demo-v2` deploy would wipe the `main` deck. Instead, open **Actions → Publish decks → Run workflow** (branch: `main`) to rebuild both.
+- **`main`**: edit, commit, push. The workflow rebuilds and redeploys all three decks automatically.
+- **`demo-v2` or `hektor-demo-sv`**: edit, commit, push, then open **Actions → Publish decks → Run workflow** using branch **`main`** to rebuild all three versions.
 
-`workflow_dispatch` always runs the default branch's copy of the workflow, so the identical file on `demo-v2` provides the Run-workflow button without ever deploying on push. Push deploys are gated to `main` by an `if` condition on the build job.
+The workflow on `main` is authoritative. Its build job is gated to `refs/heads/main`, including manual runs; select `main` when dispatching. Workflow copies on other branches do not automatically publish those branches.
 
 ### Build bases
 
-Both builds need the repository prefix, because this is a project page:
+All builds need the repository prefix, because this is a project page:
 
 - main deck: `--base /hektor-chat-pitch/`, output at the site root
 - demo-v2 deck: `--base /hektor-chat-pitch/demo-v2/`, output in `demo-v2/`
+- Swedish deck: `--base /hektor-chat-pitch/hektor-demo/`, output in `hektor-demo/`
 
 The `gh-pages` branch is no longer part of the publishing path. It still holds the last branch-based build and can be deleted once the Actions deploy is confirmed working.
 
