@@ -1,5 +1,7 @@
 # Hektor Demo
 
+**[Öppna Hektor Demo på GitHub Pages](https://h-sami.github.io/hektor-chat-pitch/hektor-demo/)** · **[Ladda ner PDF](https://h-sami.github.io/hektor-chat-pitch/hektor-demo/Hektor-Demo.pdf)**
+
 Svensk presentation för Hektor, på grenen `hektor-demo-sv`. Utgår från `demo-v2` vid `bf7e713` och är omarbetad till **14 bilder** om kundnytta, teamets vardag och erbjudandet. Titel och delningsfil heter **Hektor Demo** respektive **Hektor-Demo.pdf**.
 
 Presentationens avslut är ett värdeerbjudande: en agent till kostnaden av en supportmedarbetare, med potential att automatisera ett helt teams återkommande arbete. Det är uppdragsgivarens kommersiella inriktning; omfattning och kostnadsram fastställs i offert. Ingen uppmätt personalbesparing eller obegränsad kapacitet påstås.
@@ -38,9 +40,11 @@ PDF-filen är `Hektor-Demo.pdf`. För löpande redigering används `npm run dev`
 
 ## Egen gren och publicering
 
-Den svenska versionen hålls separat i `hektor-demo-sv`. Grenen kan delas med PDF-filen direkt från GitHub. `npm run build:pages` förbereder `ghdest/` med basen `/hektor-chat-pitch/hektor-demo/` för en möjlig framtida separat webbversion.
+Den svenska versionen hålls separat i `hektor-demo-sv` och publiceras på [GitHub Pages](https://h-sami.github.io/hektor-chat-pitch/hektor-demo/). `npm run build:pages` förbereder `ghdest/` med basen `/hektor-chat-pitch/hektor-demo/`; kommandot publicerar inte i sig.
 
-Det befintliga publiceringsflödet bygger endast `main` och `demo-v2`. Den svenska grenen läggs inte automatiskt till på den gemensamma webbplatsen. Att pusha denna gren publicerar därför inte en ny Pages-version. Flödet är bevarat så att de befintliga presentationerna inte påverkas.
+Det gemensamma publiceringsflödet i `.github/workflows/publish-decks.yml` på `main` bygger alla tre versionerna tillsammans: `main` på webbplatsens rot, `demo-v2` under `/demo-v2/` och denna gren under `/hektor-demo/`. PDF-filer och direkta bildlänkar ingår. Alla byggen måste lyckas innan webbplatsen ersätts.
+
+Efter ändringar: committa och pusha till `hektor-demo-sv`, öppna sedan **Actions → Publish decks → Run workflow** och välj **main**. En push till `main` startar också publiceringen av alla tre versionerna. Arbetsflödeskopian på denna gren styr inte den gemensamma publiceringen.
 
 ## Underlag
 
