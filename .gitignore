@@ -1,7 +1,11 @@
 # build output (generated)
 dist/
+ghdest/
 slides.publish.md
 slides.local.md
+
+# gh-pages worktree: its content is committed on the gh-pages branch, never here
+.ghpages/
 
 # local installs
 node_modules/
