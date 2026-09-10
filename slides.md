@@ -51,7 +51,7 @@ The proposal retains a better first response on Hektor's contact page and extend
 
 # Why this matters to your customers.
 
-<p class="intro">A better first response for the customer, and less pressure on the team.</p><div class="proposal-cards"><section><span class="card-label">01 / ALWAYS OPEN</span><h2>Answers at any hour.</h2><p>Every question gets a first response, day or night. Nobody waits until Monday for something the website already explains.</p></section><section><span class="card-label">02 / MANY AT ONCE</span><h2>Every customer served at once.</h2><p>Hektor Agent holds as many conversations as arrive together. The team's spare capacity stops being the limit on reply speed.</p></section><section><span class="card-label">03 / THE RIGHT NEXT STEP</span><h2>Guided, never stranded.</h2><p>When a question needs a person, it goes to support or sales with the conversation attached. No dead ends.</p></section></div><div class="proposal-strip"><b>What changes for Hektor:</b> the team keeps the judgement, and stops being the queue.</div>
+<p class="intro">A better first response for the customer, and less pressure on the team.</p><div class="proposal-cards"><section><span class="card-label">01 / ALWAYS OPEN</span><h2>Answers at any hour.</h2><p>Every question gets a first response, day or night. Nobody waits until Monday for something the website already explains.</p></section><section><span class="card-label">02 / MANY AT ONCE</span><h2>Every customer served at once.</h2><p>Hektor Agent holds as many conversations as they arrive together. The team stops being the queue.</p></section><section><span class="card-label">03 / THE RIGHT NEXT STEP</span><h2>Guided, never stranded.</h2><p>When a question needs a person, it goes to support or sales with the conversation attached. No dead ends.</p></section></div><div class="proposal-strip"><b>What changes for Hektor:</b> the team keeps the judgement, and stops being the queue.</div>
 
 <DeckFooter :page="2" note="Proposed value of the service / pilot evidence still to be gathered" />
 
@@ -272,7 +272,7 @@ Extend the original public-information-first proposal across channels. The user 
 <p class="intro">The preferred first proof of concept keeps Hektor authoritative.</p><div class="voice-diagram ">
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","edgeLabelBackground":"transparent","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
 flowchart LR
  C["Customer"] <--> N["Existing number
 and carrier"]
@@ -328,7 +328,7 @@ The Swedish general answer paraphrases the public FAQ, S18 https://hektormobil.s
 <div class="handover-voice-grid"><div><div class="voice-diagram handover-mermaid">
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","edgeLabelBackground":"transparent","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
 flowchart LR
  H["Hektor Agent"] -->|Handover intent| A["Adapter / call control"]
  A --> O{"Open?"}
@@ -359,7 +359,7 @@ Diagram B describes proposed handover. Twilio end/handoffData can return control
 <p class="intro">Staff dictation is separate from the live customer conversation.</p><div class="voice-diagram ">
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","edgeLabelBackground":"transparent","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
 flowchart LR
  D["Staff dictation /
 approved upload"] --> S["ElevenLabs Scribe v2
@@ -414,22 +414,6 @@ Target design, not a compliance guarantee. Validate signed callbacks, prevent re
 <!--
 Keep this high level. Both routes put Hektor Agent in charge of the answer; they differ only in who provides the voice. The first is the recommended starting point because the speech side is managed for us. The second is worth considering only if Hektor's own telephone system already supports it. Say that the final choice is a short technical test, not a decision the room has to make today, and do not go into supplier names or protocols here.
 -->
----
-
-<DeckHeader :chapter="4" />
-
-<div class="kicker">THE PILOT PATH</div>
-
-# Prepare. Test. Learn.
-
-<p class="intro">Public help and human handover first. Reviewable dictation alongside.</p><div class="proposal-cards"><section><span class="card-label">GATE 01 / DESIGN</span><h2>Confirm the foundations.</h2><p>Inspect the harness interface and phone system. Agree ownership, data handling and a non-production design.</p></section><section><span class="card-label">GATE 02 / REHEARSE</span><h2>Prove the whole journey.</h2><p>Test Swedish calls, safe boundaries, transfers, case delivery and reviewed dictation. Keep web-chat checks.</p></section><section><span class="card-label">GATE 03 / DECIDE</span><h2>Review the evidence.</h2><p>Agree whether to launch the scoped pilot. Verified read-only account support needs a separate gate.</p></section></div><div class="proposal-strip">Proposed test set: 50 internal calls · about 100 focused utterances · 10-20 matched alternative calls where feasible.</div>
-
-<DeckFooter :page="17" note="Proposed gates and sample sizes / no test results yet" />
-
-<!--
-No integration tests have been conducted by this presentation assignment. First inspect the full-turn interface and prepare a non-production design. Following authorization, test public support in Swedish and prove handover/case delivery before considering verified read-only customer access. Account-changing tools need separate authorization and safety review. Dictation requires human correction and an authorized case API. Proposed speech set covers Hektor terminology, Å/Ä/Ö and names, phone/customer/invoice numbers, dates, amounts, negation, corrections, regional and non-native accents, speed, silence, overlapping speech, speakerphone and background noise. Use telephone-bandwidth audio, not only clean browser microphones. Preserve web-chat source, mobile and keyboard checks. Personal-data testing still requires approval. Optional outbound follow-up is a later decision with approved purpose, calling windows, retry limits, caller identity and voicemail privacy; it is outside this inbound pilot.
--->
-
 
 ---
 
@@ -449,7 +433,7 @@ No integration tests have been conducted by this presentation assignment. First 
 </div>
 </div>
 
-<DeckFooter :page="18" note="Thank you / questions welcome" />
+<DeckFooter :page="17" note="Thank you / questions welcome" />
 
 <!--
 End on gratitude and one small ask. Thank the room for the time, then recap in a single sentence: a better first response for the customer, and less pressure on the team. The three items are deliberately small and non-technical. Do not reintroduce cost, timelines or testing detail here; if asked, say the next step is a short technical conversation, not a commitment.

@@ -1,6 +1,6 @@
 # Evidence and open questions
 
-Updated for the `demo-v2` cut: 18 management-facing slides with no cost, testing or appendix material. This is presentation work, not a working support backend or telephone deployment.
+Updated for the `demo-v2` cut: 17 management-facing slides with no cost, implementation, testing or appendix material. This is presentation work, not a working support backend or telephone deployment.
 
 The technical detail that used to be on slides now lives in [voice-dictation-research.md](voice-dictation-research.md). Nothing in it is claimed by the presentation.
 

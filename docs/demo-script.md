@@ -1,12 +1,12 @@
 # Presenter run-through: Hektor Agent
 
-Audience: Hektor management, non-technical. Allow about 15-18 minutes for the 18 slides, plus discussion. The deck is English with one illustrative Swedish dialogue. Detailed notes are embedded in every slide.
+Audience: Hektor management, non-technical. Allow about 15-18 minutes for the 17 slides, plus discussion. The deck is English with one illustrative Swedish dialogue. Detailed notes are embedded in every slide.
 
-This is the **demo-v2** cut: value first, no cost figures, no testing or appendix material.
+This is the **demo-v2** cut: value first, no cost figures, and no implementation, testing or appendix material.
 
 ## Before presenting
 
-Present from the local deck or its PDF. Confirm the footer reads 18. Nothing is live: no calls are placed, no accounts are read and no cases are written. The chat and phone examples are illustrations.
+Present from the local deck or its PDF. Confirm the footer reads 17. Nothing is live: no calls are placed, no accounts are read and no cases are written. The chat and phone examples are illustrations.
 
 Keep the language plain. Avoid supplier names, protocols and acronyms; the slides deliberately do not carry them.
 
@@ -30,8 +30,7 @@ Keep the language plain. Avoid supplier names, protocols and acronyms; the slide
 | 14 | Dictate once. Review before saving. | Staff notes are drafted, then approved by a person before anything is saved. |
 | 15 | Access and actions stay under Hektor's control. | Verify, authorize on the server, and always keep a route to a person. |
 | 16 | Two ways to add the phone. | Keep this high level: a managed voice service, or Hektor's own phone system. No decision needed today. |
-| 17 | Prepare. Test. Learn. | Three gates: confirm the foundations, prove the journey, review the evidence. |
-| 18 | Thank you. | Stop selling. Thank them, and ask for the three small things on the slide. |
+| 17 | Thank you. | Stop selling. Thank them, and ask for the three small things on the slide. |
 
 ## Where to linger
 
