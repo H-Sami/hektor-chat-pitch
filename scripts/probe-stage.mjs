@@ -1,22 +1,15 @@
 /**
- * Diagnostic: dump computed text-decoration and border properties for a selector
- * on a given slide, to explain visual artefacts in the rendered deck.
+ * One-off probe: box model of the active slide's subtree (depth <= 6), to see
+ * which element actually holds the content and where it ends.
  *
- * Usage: node scripts/inspect-css.mjs <slideNumber> "<selector substring>"
+ * Usage: node scripts/probe-stage.mjs [baseUrl] [slideNumber]
  */
 import { readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { chromium } from 'playwright-core'
 
 const baseUrl = (process.argv[2] ?? 'http://127.0.0.1:8099').replace(/\/$/, '')
-const target = Number(process.argv[3] ?? 2)
-const needle = process.argv[4] ?? 'hektormobil.se'
-
-const PROPS = [
-  'textDecorationLine', 'textDecorationStyle', 'textDecorationColor', 'textDecorationThickness',
-  'borderBottomWidth', 'borderBottomStyle', 'borderBottomColor',
-  'backgroundImage', 'paddingBottom', 'fontWeight', 'color',
-]
+const target = Number(process.argv[3] ?? 4)
 
 function findChromium() {
   const cache = join(process.env.LOCALAPPDATA ?? '', 'ms-playwright')
@@ -46,19 +39,33 @@ if (target > 1) {
   await page.waitForTimeout(1200)
 }
 
-const out = await page.evaluate(([needle, props]) => {
+const out = await page.evaluate(() => {
   const stage = document.querySelector('#slide-content')
+  const sr = stage.getBoundingClientRect()
   const active = [...stage.querySelectorAll('.slidev-page')].find(p => getComputedStyle(p).display !== 'none')
-  const hits = [...active.querySelectorAll('*')].filter(
-    el => el.children.length === 0 && (el.textContent ?? '').includes(needle),
-  )
-  return hits.map(el => {
+  const lines = []
+  const walk = (el, depth) => {
+    if (depth > 6) return
+    const r = el.getBoundingClientRect()
     const cs = getComputedStyle(el)
-    const row = { tag: el.tagName.toLowerCase(), cls: String(el.className), text: (el.textContent ?? '').slice(0, 40) }
-    for (const p of props) row[p] = cs[p]
-    return row
-  })
-}, [needle, PROPS])
+    lines.push(
+      `${'  '.repeat(depth)}${el.tagName.toLowerCase()}${el.className ? '.' + String(el.className).trim().split(/\s+/).slice(0, 3).join('.') : ''}` +
+      ` | top ${(r.top - sr.top).toFixed(0)} bottom ${(r.bottom - sr.top).toFixed(0)} h ${r.height.toFixed(0)}` +
+      ` | pos ${cs.position} oy ${cs.overflowY} d ${cs.display} pad ${cs.paddingTop}/${cs.paddingBottom}` +
+      ` | ${(el.textContent ?? '').trim().slice(0, 30)}`,
+    )
+    for (const c of el.children) walk(c, depth + 1)
+  }
+  walk(active, 0)
+  return {
+    stage: `${sr.width.toFixed(0)}x${sr.height.toFixed(0)}`,
+    activeDisplay: getComputedStyle(active).display,
+    activeClass: String(active.className),
+    lines,
+  }
+})
 
-console.log(JSON.stringify(out, null, 2))
+console.log(`[probe] stage ${out.stage}; active page class "${out.activeClass}"`)
+console.log(out.lines.join('\n'))
+
 await browser.close()

@@ -49,7 +49,6 @@ const SHOTS = [
   { page: 'index.html', out: '01-site-wide.png', size: '1440,1000', args: [] },
   { page: 'panel.html', out: '02-panel.png', size: '1400,900', args: [] },
   { page: 'index.html', out: '03-mobile.png', size: '430,880', args: [] },
-  { page: 'panel.html', out: '04-panel-hi.jpg', size: '1330,860', args: ['--quality=88'] },
 ]
 
 console.log(`[shots] chromium: ${shell}`)

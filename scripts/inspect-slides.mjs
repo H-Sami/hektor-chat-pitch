@@ -61,4 +61,8 @@ for (const b of blocks) {
 }
 
 const noteBlocks = lines.filter(l => inNote(l)).length
-console.log(`\ntotal slides: ${blocks.length}; lines opening a note block: ${noteBlocks}`)
+// Blocks split on `---`, so a slide that carries its own `layout:` frontmatter is
+// counted twice. The reliable slide count is one title heading per slide, which
+// is also what build-publish.mjs counts.
+const headings = lines.filter(l => /^#\s+\S/.test(l.trim())).length
+console.log(`\ntotal slides: ${headings} (from title headings; ${blocks.length} delimiter blocks); notes: ${noteBlocks}`)

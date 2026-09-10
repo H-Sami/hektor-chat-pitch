@@ -32,7 +32,7 @@ const ASSET_DIR = join(root, 'mockup', 'shots')
 
 /** Screenshot placeholders in slides.md -> file in mockup/shots. */
 const ASSETS = {
-  '/images/mock-chat.jpg': '04-panel-hi.jpg',
+  '/images/panel-tight.jpg': '06-panel-tight.jpg',
 }
 
 /**

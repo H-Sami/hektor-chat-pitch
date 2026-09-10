@@ -41,7 +41,7 @@
   }
 
   .chat {
-    width: 430px; height: 780px;
+    width: 430px; height: 880px;
     background: #fff; border-radius: 16px; overflow: hidden;
     display: flex; flex-direction: column;
     box-shadow: 0 30px 70px rgba(12, 40, 32, 0.26), 0 2px 0 rgba(255,255,255,.6) inset;
@@ -53,11 +53,11 @@
   .chead .status { font-size: 12px; opacity: 0.92; display: flex; align-items: center; gap: 6px; }
   .chead .dot { width: 7px; height: 7px; border-radius: 50%; background: #b8f5dc; display: block; }
 
-  .body { flex: 1; overflow: hidden; padding: 16px 16px 6px; background: #f7faf9; }
-  .msg { margin-bottom: 11px; display: flex; }
+  .body { flex: 1; overflow: hidden; padding: 14px 16px 4px; background: #f7faf9; }
+  .msg { margin-bottom: 9px; display: flex; }
   .msg.bot { justify-content: flex-start; }
   .msg.user { justify-content: flex-end; }
-  .bubble { max-width: 86%; width: fit-content; padding: 10px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.6; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .bubble { max-width: 86%; width: fit-content; padding: 9px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.5; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 4px; }
   .msg.user .bubble { background: #eaf6f1; border-color: #d3ebe1; border-bottom-left-radius: 12px; border-bottom-right-radius: 4px; }
   .bubble b { font-weight: 700; }
   .src { display: block; margin-top: 8px; font-size: 12px; color: #5c7a70; }
@@ -85,7 +85,7 @@
   <div class="pitch">
     <div class="kicker">Hektor · Kontakta oss</div>
     <h2>The same window answers, and hands over.</h2>
-    <p>Every answer is grounded in Hektor's own material and shows where it came from. When the question needs a person, the colleague takes over in the same window — with the conversation already written down.</p>
+    <p>Every answer is grounded in Hektor's own material and shows where it came from. When the question needs a person, the colleague takes over in the same window, with the conversation already written down.</p>
     <ul>
       <li>Answer in seconds, with the source attached</li>
       <li>Prices and terms read from Hektor's data</li>
@@ -104,13 +104,13 @@
     </div>
 
     <div class="body">
-      <div class="msg bot"><div class="bubble">Hej! Jag är Hektors AI-assistent. Jag kan svara på frågor om abonnemang, fakturor, täckning och våra tjänster — dygnet runt. Vad kan jag hjälpa dig med?</div></div>
+      <div class="msg bot"><div class="bubble">Hej! Jag är Hektors AI-assistent. Jag kan svara på frågor om abonnemang, fakturor, täckning och våra tjänster, dygnet runt. Vad kan jag hjälpa dig med?</div></div>
       <div class="msg user"><div class="bubble">Varför är min första faktura högre än abonnemangspriset?</div></div>
       <div class="msg bot"><div class="bubble">Din första faktura täcker perioden från aktiveringen till slutet av månaden, plus en engångsavgift på <b>299 kr inkl. moms</b> (299 kr exkl. moms för företag) om inget annat avtalats. Därför blir den högre än månadspriset.</div></div>
-      <div class="msg bot"><div class="bubble"><span class="src">Källa: <a href="#">Vanliga frågor — ”Varför är min första faktura högre som ny kund?”</a> · Hektors allmänna villkor</span></div></div>
+      <div class="msg bot"><div class="bubble"><span class="src">Källa: <a href="#">Vanliga frågor, "Varför är min första faktura högre som ny kund?"</a> · Hektors allmänna villkor</span></div></div>
       <div class="msg user"><div class="bubble">Kan ni dela upp den på två betalningar?</div></div>
-      <div class="msg bot"><div class="bubble">Det är en betalningsuppgörelse, så den vill jag inte avgöra själv. Jag kopplar dig till en kollega som tittar på just dina fakturor — jag skickar med hela konversationen så du slipper upprepa dig.</div></div>
-      <div class="msg bot"><div class="handover"><div class="t">Vidarekopplad till en kollega</div>Kundnummer <b>104287</b> · Kontaktnummer <b>07X-XXX XX 12</b><br />Ärende: dela upp första fakturan<br /><span class="src">Konversationen skickas med · Öppettider vardagar 08:00–17:00</span></div></div>
+      <div class="msg bot"><div class="bubble">Det är en betalningsuppgörelse, så den vill jag inte avgöra själv. Jag kopplar dig till en kollega som tittar på just dina fakturor. Jag skickar med hela konversationen så du slipper upprepa dig.</div></div>
+      <div class="msg bot"><div class="handover"><div class="t">Vidarekopplad till en kollega</div>Kundnummer <b>104287</b><br />Ärende: dela upp första fakturan<br /><span class="src">Hela konversationen följer med</span></div></div>
     </div>
 
     <div class="foot">
