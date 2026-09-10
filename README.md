@@ -45,9 +45,36 @@ The output is `Hektor-AI-Chat-Pitch.pdf`, kept in Git as the offline presentatio
 
 ## Repository and publishing
 
-The existing published deck is at https://h-sami.github.io/hektor-chat-pitch/. GitHub Pages serves the `gh-pages` branch. A source commit on another branch does not update that site.
+Two decks are published from this one repository:
 
-`npm run build:pages` prepares `ghdest/` with the required `/hektor-chat-pitch/` asset base. Publishing requires updating the `gh-pages` branch with that output, the current PDF and a `.nojekyll` file. Include `mockup/` only if retaining the legacy prototype link. **This assignment prepares local output only. Do not push or publish without separate authorization.**
+| URL | Source | Deck |
+|---|---|---|
+| https://h-sami.github.io/hektor-chat-pitch/ | `main` | The 26-slide deck |
+| https://h-sami.github.io/hektor-chat-pitch/demo-v2/ | `demo-v2` | The 18-slide value-first cut |
+
+GitHub Pages allows only one source per repository, and a branch source cannot serve two branches. So publishing is done by the workflow in `.github/workflows/publish-decks.yml`, which builds **both** refs and deploys them together as a single Pages artifact. The Pages source is therefore set to **GitHub Actions**, not a branch.
+
+### Updating a deck
+
+- **`main`**: edit, commit, push. The workflow rebuilds and redeploys both decks automatically.
+- **`demo-v2`**: edit, commit, push. Nothing deploys automatically, because every deploy replaces the whole site and an ungated `demo-v2` deploy would wipe the `main` deck. Instead, open **Actions → Publish decks → Run workflow** (branch: `main`) to rebuild both.
+
+`workflow_dispatch` always runs the default branch's copy of the workflow, so the identical file on `demo-v2` provides the Run-workflow button without ever deploying on push. Push deploys are gated to `main` by an `if` condition on the build job.
+
+### Build bases
+
+Both builds need the repository prefix, because this is a project page:
+
+- main deck: `--base /hektor-chat-pitch/`, output at the site root
+- demo-v2 deck: `--base /hektor-chat-pitch/demo-v2/`, output in `demo-v2/`
+
+The `gh-pages` branch is no longer part of the publishing path. It still holds the last branch-based build and can be deleted once the Actions deploy is confirmed working.
+
+Local page build, if you want to inspect the output:
+
+```sh
+npm run build:pages     # -> ghdest/ at the /hektor-chat-pitch/ base
+```
 
 ## Supporting files
 

@@ -1,0 +1,110 @@
+# Publish both deck versions to one GitHub Pages site.
+#
+# GitHub Pages accepts exactly one source per repository, so a branch-based
+# source can only ever serve one deck. This workflow builds both refs and
+# deploys them together as a single artifact:
+#
+#   /                     -> main branch deck (unchanged URL, nothing shared breaks)
+#   /demo-v2/             -> demo-v2 branch deck (value-first 18-slide cut)
+#
+# NOTE ON TRIGGERS: `workflow_dispatch` always runs the version of this file
+# that lives on the default branch, and push deploys are gated to `main`. That
+# means this same file can exist on demo-v2 for the "Run workflow" button without
+# a push there ever deploying - which matters, because every deploy replaces the
+# whole site, so an ungated demo-v2 deploy would wipe the main deck.
+#
+# To refresh the demo-v2 deck after pushing to that branch, run this workflow
+# manually from the Actions tab (branch: main).
+name: Publish decks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; queue instead of cancelling so the site is never
+# left half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Check out demo-v2
+        id: demo
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: demo-v2
+          path: demo-v2
+
+      - name: Report demo-v2 availability
+        run: |
+          if [ "${{ steps.demo.outcome }}" = "success" ]; then
+            echo "demo-v2 checked out; it will be published at /demo-v2/"
+          else
+            echo "::warning::demo-v2 branch not available - publishing the main deck only"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: main/package-lock.json
+
+      - name: Install dependencies
+        working-directory: main
+        run: npm ci --ignore-scripts
+
+      - name: Build main deck at the site root
+        working-directory: main
+        run: |
+          node node_modules/@slidev/cli/bin/slidev.mjs build slides.md \
+            --out ../site --base /hektor-chat-pitch/
+
+      - name: Build demo-v2 deck under /demo-v2/
+        if: steps.demo.outcome == 'success'
+        working-directory: demo-v2
+        run: |
+          npm ci --ignore-scripts
+          # The base must include the repository prefix: this is a project page at
+          # h-sami.github.io/hektor-chat-pitch/, so the deck's own assets resolve
+          # under /hektor-chat-pitch/demo-v2/, not /demo-v2/.
+          node node_modules/@slidev/cli/bin/slidev.mjs build slides.md \
+            --out ../site/demo-v2 --base /hektor-chat-pitch/demo-v2/
+
+      - name: Stop Jekyll from rewriting hashed asset names
+        run: touch site/.nojekyll
+
+      - name: Show what is being published
+        run: |
+          echo "site root:"; ls -1 site | head -20
+          if [ -d site/demo-v2 ]; then echo "demo-v2 present"; else echo "demo-v2 absent"; fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
