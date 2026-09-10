@@ -1,42 +1,40 @@
 # Evidence and open questions
 
-Updated for the 12-slide Hektor Agent management proposal, 10 September 2026.
+Updated 10 September 2026 for 20 main slides and six appendix slides. This is presentation work, not a working support backend or telephone deployment.
 
-## Public facts used in the deck
+## What the repository establishes
 
-The [Hektor contact page](https://hektormobil.se/kontakta-oss), checked 10 September 2026, lists a contact form, `support@hektormobil.se`, `070-100 01 00`, and a public FAQ. Its WiFi-calling explanation says that calls use WiFi instead of the mobile network and require a compatible phone. Slide 4 paraphrases that explanation in a clearly labelled illustrative conversation.
+The previous 12-slide proposal supplied the management narrative and visual identity. Its older mockup is scripted. The inspected README, slides, components, demo script and build tooling do not verify a Hektor runtime interface. No runtime code was modified or integration provisioned. All diagrams and customer interactions remain proposed or illustrative.
 
-Published support hours are weekdays 08:00-17:00, with lunch closed 12:00-13:00, and weekends closed. The calculation is **5 × (9 - 1) = 40 staffed hours per week**, leaving **168 - 40 = 128 hours outside those hours**. The earlier 16-slide deck incorrectly used 45 and 123. Forms and email can still receive messages outside staffed hours. No inference about lost sales or customer demand follows from the schedule alone.
+The [Hektor contact page](https://hektormobil.se/kontakta-oss), checked on the baseline date, supports the WiFi-calling explanation and published hours: weekdays 08:00–17:00 with lunch 12:00–13:00. This is 5 × (9 − 1) = 40 staffed hours, leaving 128 outside the schedule. Forms and email can still receive messages; this is not traffic, revenue or lost-sales evidence.
 
 ## Proposed scope
 
-Start on the contact page with approved public information and a defined handover to support or sales. Customer-record access is a separate later decision. Hektor appoints a service owner and approves material, scope, follow-up rules and supplier arrangements.
+Retain website chat for approved general information and human handover. Extend the proposal to Swedish telephone public help via ConversationRelay and a session-aware Hektor adapter, with separate reviewed Scribe dictation. Reuse live AI transcripts for documentation without duplicate STT by default. Verified read-only account access is a separate later gate; account-changing actions require separate authorization and safety review.
 
-The initial pilot should test Swedish conversations, source support for answers, refusals, mobile use, keyboard accessibility and case delivery. Agree success criteria before launch. The deck does not promise savings, a resolution rate, a launch date or a price.
+The alternative native ElevenLabs Agents/SIP plus custom full-turn endpoint may be simpler for a compatible existing PBX. It is not the separate Speech Engine/Twilio Media Streams pattern. Supplier claims and their limitations were checked in the [S01–S20 registry](voice-dictation-research.md). Swedish telephone quality, cost savings and operational reliability have not been measured.
 
-## Questions that still need answers
+## Missing information before implementation
 
-| Question | Why it matters |
+| Area | Open information |
 |---|---|
-| Can the website embed the chat, and who manages it? | Confirms feasibility and deployment access. |
-| What questions arrive, how often and through which channels? | Establishes a baseline and a useful initial scope. |
-| Who approves sources and keeps them current? | Defines ownership of answer quality. |
-| Where should handovers arrive and who follows up? | Makes escalation operationally useful. |
-| What response can be promised outside staffed hours? | Prevents misleading expectations. |
-| Which suppliers and billing arrangements are acceptable? | Allows a concrete implementation and running-cost proposal. |
-| What information may the chat collect and retain? | General chats can still receive personal information. |
-| What privacy, contractual and accessibility requirements apply? | Determines the checks required before launch. |
-| Which CRM and identity systems are used? | Determines whether a later personal-support phase is feasible. |
-| Which outcome thresholds justify expansion? | Gives the pilot a clear decision at its end. |
+| Website and knowledge | Website owner/embed feasibility; approved sources, conflicts and update ownership; mobile/keyboard checks |
+| Runtime | Repository/API access, complete support turn, streaming, sessions, cancellation, timeouts and concurrency |
+| Tools and state | Authorized tools, case API/schema, idempotency, jobs, durable results and audit |
+| Identity | Existing verification method and assurance, allowed read-only scope and human escalation; do not assume BankID |
+| Telephony | Carrier/PBX, number control, SIP/forwarding, transfer acceptance, destination, hours and fallback owner |
+| Documentation | Staff notes vs whole calls, review UI, confirmed-result mapping, human-leg recording/transcription decision |
+| Data and suppliers | Processing/storage/access regions, metadata/support access, contracts, disclosure, per-artifact retention, incident handling and Enterprise quotes |
+| Operations and economics | Contact volume/peaks, repeated contacts, actual Hektor costs, operator ownership, support expectations, review effort and budget |
 
-These are open design and commercial questions. No statement in the deck is a guarantee of legal compliance or error-free model behaviour. Confirm personal-data responsibilities, supplier terms, retention and access controls with the appropriate Hektor reviewers.
+## Readiness gates
 
-## Tooling and publishing
+Confirm the full-turn interface and non-production design first. After authorization, test Swedish public help, complete handover/case delivery and reviewable dictation. Assess approved identity and read-only access separately. Production readiness remains blocked by unresolved interfaces/authentication, handover/case reliability, supplier/data approval and untested Swedish performance. Any test involving personal data still requires appropriate approval.
 
-The redesign uses Slidev locally, with `slides.md`, shared `style.css` and reusable Vue components under `components/`. Its supported output paths are a static build and PDF export. The visual design uses a forest-green cover and closing, light content slides, a proportional weekly-hours chart and a branching customer-journey diagram. Section navigation and page progress help orient the audience. Node 22.12 or later is needed by the locked dependencies. Verification uses installed Chrome on Windows and checks all slide titles, browser errors, text bounds and footer collisions before capturing screenshots.
+Proposed targets and sample sizes are recorded in Appendix D2 and the research document; every result remains **not yet measured**. A call ending is not proof of resolution. Local build, browser and PDF checks only validate presentation artifacts.
 
-The previous hosted Slidev MCP workflow is optional legacy tooling. The old markdown-packaging helper does not bundle the redesigned CSS or Vue components, so do not assume its output reproduces this version. The current session's MCP access and service availability have not been tested. No MCP installation is necessary for local editing.
+## Budget and privacy limits
 
-GitHub Pages serves the separate `gh-pages` branch. Source commits alone do not deploy the deck. Rebuild with the project asset base and include the new PDF when publishing.
+The $84/month ConversationRelay processing example and $97.63–$111.86 selected usage subtotal are illustrative USD amounts, excluding tax. Neither is total operating cost or a quote. Carrier routing, plan allowances, Enterprise terms, implementation, ongoing operation and human review require separate agreement. No markup on agreed direct supplier usage remains a conditional commercial proposal.
 
-The earlier standalone mockup remains under `mockup/` as a scripted prototype, with invented customer details. The redesigned slides use their own readable HTML illustration; the older prototype is not a live service or proof of a working integration.
+IE1 does not establish an EU-only processing chain. ElevenLabs regional residency is Enterprise and configuration-dependent. Hektor's published up-to-90-day recorded-call/chat retention is context, not blanket approval for new vendors or every artifact. Privacy and applicable Swedish/EU obligations need Hektor review; no compliance sign-off is implied.

@@ -17,6 +17,9 @@
     "serve": "node scripts/serve-dist.mjs 8099 dist",
     "pdf:info": "node scripts/pdf-info.mjs Hektor-AI-Chat-Pitch.pdf"
   },
+  "overrides": {
+    "floating-vue": "5.2.2"
+  },
   "dependencies": {
     "@slidev/cli": "^52.19.1",
     "@slidev/theme-default": "^0.25.0",

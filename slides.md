@@ -25,7 +25,7 @@ drawings:
 # A better first response.
 
 <p class="cover-sub">Answers from your knowledge.<br>A clear path to your people.</p>
-<div class="cover-caption"><span class="tiny-line"></span>A focused pilot on your contact page</div>
+<div class="cover-caption"><span class="tiny-line"></span>Web chat, telephone support and staff dictation</div>
 </div>
 
 <div class="cover-scene" aria-label="Illustrative customer journey from question to answer to a member of the Hektor team">
@@ -40,7 +40,7 @@ drawings:
 <DeckFooter :page="1" note="Hektor Agent / A proposal for management" />
 
 <!--
-The proposal is a better first response on Hektor's contact page. Customers should be able to find straightforward answers, and reach Hektor's people with context when they need help. This is a proposed service, not a finished product. Today we are deciding whether a focused pilot is worth scoping.
+The proposal retains a better first response on Hektor's contact page and extends it to telephone support and separate reviewed staff dictation. Customers should be able to find straightforward answers, and reach Hektor's people with context when they need help. This is a proposed service, not a finished product. Today we are deciding whether a focused pilot is worth scoping.
 -->
 
 ---
@@ -233,94 +233,345 @@ We do not yet know Hektor's CRM or identity setup. The initial pilot does not ne
 
 <DeckHeader :chapter="3" />
 
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# One Hektor Agent. More ways to get help.
+
+<p class="intro">Shared knowledge and rules. Three distinct interaction workflows.</p><div class="proposal-cards"><section><span class="card-label">01 / WEBSITE CHAT</span><h2>Type a question.</h2><p>Public answers and an agreed route to a colleague. The original pilot experience.</p></section><section><span class="card-label">02 / CUSTOMER PHONE</span><h2>Talk in Swedish.</h2><p>A managed speech interface carries the conversation to Hektor. Human help stays available.</p></section><section><span class="card-label">03 / STAFF DICTATION</span><h2>Speak a case note.</h2><p>Transcribe, draft and review. An authorized case operation follows staff approval.</p></section></div><div class="proposal-strip"><b>HEKTOR AGENT</b> owns support reasoning, policy and authorized actions in the proposed design.</div>
+
+<DeckFooter :page="9" note="Proposed integration / Hektor runtime interfaces not yet verified" />
+
+<!--
+Extend the original public-information-first proposal across channels. The user intends to reuse an existing Hektor harness; no runtime repository or verified API contract was available in this presentation project. Knowledge retrieval, full-turn execution, tools, identity and case APIs are prerequisites to inspect, not functionality demonstrated by the slides. Dictation is a separate staff documentation workflow, not an autonomous customer telephone agent.
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# Add a voice, not another support brain.
+
+<p class="intro">The preferred first proof of concept keeps Hektor authoritative.</p><div class="voice-diagram ">
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+flowchart LR
+ C["Customer"] <--> N["Existing number
+and carrier"]
+ N <--> V["Twilio
+ConversationRelay"]
+ V <--> A["Hektor voice adapter
+Session-aware"]
+ A <-->|Full support turn| H["HEKTOR AGENT
+Reasoning and policy"]
+ H --> K["Approved knowledge"]
+ H <--> T["Authorized tools
+Account access later"]
+ style H fill:#173d29,color:#ffffff,stroke:#173d29,stroke-width:3px
+```
+
+</div><div class="proposal-strip">Twilio speech: Swedish Google transcription + ElevenLabs voice. Adapter: transcript in, speech text out.</div>
+
+<DeckFooter :page="10" note="S02–S03 / Documented speech interface; proposed Hektor integration" />
+
+<!--
+Proposed architecture, not deployed. S02 documents the managed WebSocket speech interface. S03 lists sv-SE with Google transcription and an ElevenLabs voice; this proves configuration availability, not superior Swedish telephone quality. Pin and test provider, model and voice instead of trusting changing defaults. The small adapter delegates complete support turns to Hektor, including knowledge, policy and internal tool loops. It supplies no independent support decisions. It is session-aware: call/session mappings, delivery events, retries and interruption reconciliation. Hektor remains durable authority for conversation and action state. Customer-specific tools are disabled in the initial pilot. Reuse existing service/storage/job mechanisms; no duplicate knowledge base, customer database, vendor LLM, memory or orchestration platform by default. Full Diagram A is retained in docs/voice-dictation-research.md. Sources S02 https://www.twilio.com/docs/voice/twiml/connect/conversationrelay ; S03 https://www.twilio.com/docs/voice/conversationrelay/voice-configuration
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# A Swedish call, from question to next step.
+
+<div class="dialogue-label">ILLUSTRATIVE PILOT CONVERSATION</div><div class="phone-dialogue">
+<div><b>Hektor</b><p>Hej! Du pratar med Hektors AI-assistent. Jag kan hjälpa dig med vanliga frågor eller hjälpa dig att nå supporten.</p></div>
+<div class="caller"><b>Customer</b><p>Hur fungerar wifi-samtal?</p></div>
+<div><b>Hektor</b><p>Du ringer via wifi i stället för mobilnätet. Din telefon behöver stödja tjänsten.</p></div>
+<div class="caller"><b>Customer</b><p>Kan du kontrollera mitt abonnemang?</p></div>
+<div class="boundary"><b>Hektor</b><p>Jag kan inte se dina abonnemangsuppgifter här. Jag hjälper dig vidare till supporten.</p></div></div><div class="small-caption">Proposed next step: connect to support and deliver the context separately.</div>
+
+<DeckFooter :page="11" note="S18 / Public FAQ; dialogue and next steps are illustrative" />
+
+<!--
+The Swedish general answer paraphrases the public FAQ, S18 https://hektormobil.se/kontakta-oss . No live call, account lookup, identity verification or subscription change is demonstrated. The initial pilot cannot access account records. Eventual personal support requires an approved identity check, scoped read-only lookup and a supported answer or escalation. Caller ID alone is not authentication; an unverified caller can still reach a person. Do not assume BankID. The opening illustrates AI identification, not a complete approved privacy or recording script. Hektor must approve disclosure and personal-data handling before applicable testing.
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# The next colleague receives the context.
+
+<div class="handover-voice-grid"><div><div class="voice-diagram handover-mermaid">
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+flowchart LR
+ H["Hektor Agent"] -->|Handover intent| A["Adapter / call control"]
+ A --> O{"Open?"}
+ O -->|Open| Q["Queue → colleague"]
+ O -->|Otherwise| F["Callback /
+voicemail"]
+ H -->|Authorized operation| K["Support case"]
+ K -.->|Context| Q
+ K -.->|Follow-up work| F
+```
+
+</div></div><section class="compact-case"><span class="card-label">ILLUSTRATIVE / CASE DEMO-001</span><h2>WiFi calling → account help</h2><dl><dt>Request</dt><dd>Check subscription</dd><dt>Verification</dt><dd>Not verified</dd><dt>Covered</dt><dd>Public WiFi explanation</dd><dt>Tool outcomes</dt><dd>No account action</dd><dt>Escalation</dt><dd>Account access boundary</dd><dt>Next owner</dt><dd>Support queue / agreed follow-up</dd></dl></section></div><div class="small-caption">Transfer and case delivery are separate. Open → queue; busy, closed or no answer → approved follow-up.</div>
+
+<DeckFooter :page="12" note="S04–S05 / Call control is documented; case delivery is proposed" />
+
+<!--
+Diagram B describes proposed handover. Twilio end/handoffData can return control and information to the Connect action callback; it does not populate a CRM or staff desktop. Case creation, context routing and delivery acknowledgment need Hektor-owned integration. Include reason, relevant transcript and confirmed actions. Fictional identifier DEMO-001. Open support routes to the queue; busy, closed and no-answer routes need approved callback/voicemail handling. Failed case delivery needs durable retry and an operator alert; it must not prevent an urgent human connection. Full blueprint is retained in the research document. Sources S04 https://www.twilio.com/docs/voice/conversationrelay/websocket-messages ; S05 https://www.twilio.com/docs/voice/twiml/connect
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# Dictate once. Review before saving.
+
+<p class="intro">Staff dictation is separate from the live AI conversation.</p><div class="voice-diagram ">
+
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#e6f0e7","primaryTextColor":"#173d29","primaryBorderColor":"#9abda4","lineColor":"#658a70","fontFamily":"Segoe UI","fontSize":"18px"},"flowchart":{"htmlLabels":false,"curve":"basis","rankSpacing":22,"nodeSpacing":20,"padding":10}}}%%
+flowchart LR
+ D["Staff dictation /
+approved upload"] --> S["ElevenLabs Scribe v2
+Source transcript"]
+ S --> H["Hektor documentation
+Facts and draft case"]
+ L["Live AI transcript +
+confirmed action results"] -->|Reuse directly| H
+ H --> R["Staff correction
+and approval"]
+ R --> W["Authorized case tool
+Create / update"]
+ style H fill:#173d29,color:#ffffff,stroke:#173d29
+```
+
+</div><div class="draft-fields"><b>Draft fields</b><span>Reason &amp; request · confirmed facts · steps tried · completed actions · commitments<br>Follow-up owner/date · uncertain fields · source transcript references</span></div>
+
+<DeckFooter :page="13" note="S12 / Documented transcription features; proposed review and case workflow" />
+
+<!--
+Proposed documentation workflow, Diagram C. S12 documents Swedish, timestamps and speaker diarization for Scribe v2. Speaker labels do not establish identity; single-speaker staff notes usually need no diarization. Preserve separate channels/known roles where available for multi-party audio. Retain source references, distinguish reported statements from confirmed business-system results and mark uncertainty. Review names, critical numbers, dates and commitments before an authorized case write. A dictated instruction must never directly execute an account change. Reuse live AI transcripts and confirmed Hektor actions; no second transcription service by default. Re-transcribe retained audio only for a justified approved review requirement. The live transcript covers the AI leg only. The subsequent human conversation needs a separately approved PBX/recording/transcription integration. Source S12 https://elevenlabs.io/docs/overview/capabilities/speech-to-text
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# Access and actions stay under Hektor’s control.
+
+<p class="intro">Three boundaries must hold across chat, phone and documentation.</p><div class="proposal-cards"><section><span class="card-label">01 / VERIFY</span><h2>Before account access.</h2><p>An approved identity check precedes a scoped lookup. Caller ID is insufficient.</p></section><section><span class="card-label">02 / AUTHORIZE</span><h2>Permissions on the server.</h2><p>Hektor controls tools and confirmed actions. Speech or dictated text cannot grant access.</p></section><section><span class="card-label">03 / RECOVER</span><h2>A safe route to a person.</h2><p>Handle interruptions, outages and failed case delivery. Human access does not require verification.</p></section></div><div class="proposal-strip"><b>Data review required.</b> IE1 does not establish an EU-only chain; ElevenLabs residency requires an eligible Enterprise setup.</div>
+
+<DeckFooter :page="14" note="S05–S06, S14–S15, S19–S20 / Target controls; supplier and privacy review required" />
+
+<!--
+Target design, not a compliance guarantee. Validate signed callbacks, prevent replay and restrict transfer destinations. Voice-provider text must not set trusted authorization. Interruption stops queued speech and obsolete generation; reconcile what was actually spoken with Hektor history. It does not undo a committed action. Persist logical action IDs and reconcile uncertain outcomes before retrying idempotent writes. Hektor outages use approved deterministic messages and human/follow-up routes, not a replacement autonomous support LLM. Full voice outage needs original carrier/PBX fallback. Case failures require durable retry/alerting. S05–S06: IE1 availability does not guarantee all data remains there; check each product, speech processor, metadata and support access. S14–S15: ElevenLabs residency and eligible Zero Retention configurations are Enterprise features; EU storage, processing and external endpoints must be reviewed separately. Recording is optional; transcription still handles personal data. Agree purpose, disclosure, access, retention/deletion, processors/subprocessors and incident response under GDPR, applicable Swedish telecom rules and AI transparency obligations (S20), without claiming legal approval. Hektor’s up-to-90-day recorded-call/chat policy is context, not authorization for new vendors or every artifact (S19). Any personal-data test needs appropriate approval. Full URLs and qualification mapping are in docs/voice-dictation-research.md.
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# A small pilot, with visible cost assumptions.
+
+<p class="intro">Illustrative sizing, not measured Hektor traffic.</p><div class="cost-feature"><div><span class="card-label">CONVERSATIONRELAY PROCESSING ONLY</span><div class="cost-number">$84<span>/ month</span></div><p>300 inbound calls × 4 AI minutes × $0.07</p></div><section><h2>Usage is measurable.</h2><p>Also assume 45 transfers × 6 human minutes and 10 hours of separate staff dictation.</p><p><b>Total operating cost and implementation scope remain to be agreed.</b></p></section></div><div class="proposal-strip">This is not the total operating cost. Full selected-component arithmetic and exclusions: Appendix C.</div>
+
+<DeckFooter :page="15" note="S07, S13 / USD excluding tax / public rates checked 10 Sep 2026" />
+
+<!--
+USD excluding tax; public rates checked 10 September 2026. These are sizing assumptions, not traffic evidence or a production quote. 300×4=1,200 AI minutes. At 15% transfers, 45×6=270 human minutes. In the illustrated bridged route, inbound minutes continue during human conversation: 1,470 before queue/ringing. Eligible SIP/BYOC tariff and onward destination must be verified. Managed speech is assumed in the ConversationRelay processing component; verify the actual account tariff and do not add duplicate Media Streams or Google/ElevenLabs speech charges without a contract requirement. Appendix C shows selected usage only and exclusions. S07 https://www.twilio.com/en-us/products/conversational-ai/pricing ; https://www.twilio.com/en-us/voice/pricing/se ; S13 https://elevenlabs.io/pricing/api
+-->
+
+---
+
+<DeckHeader :chapter="3" />
+
+<div class="kicker">PROPOSED EXTENSION</div>
+
+# Start simple. Keep the alternative testable.
+
+<div class="route-comparison"><section class="preferred"><span class="card-label">PREFERRED FIRST PROOF OF CONCEPT</span><h2>Twilio text interface</h2><p>Existing carrier → ConversationRelay → session-aware adapter → Hektor.</p><ul><li>Managed speech with a documented Swedish configuration</li><li>Hektor owns the full support turn</li><li>Validate routing, interruptions and transfer</li></ul></section><section><span class="card-label">CONDITIONAL ALTERNATIVE</span><h2>ElevenLabs native SIP</h2><p>Compatible PBX → ElevenLabs Agents → custom streaming Hektor endpoint.</p><ul><li>Could remove Twilio from the route</li><li>Full turns through an OpenAI-compatible interface</li><li>SIP REFER: context delivered separately</li></ul></section></div><div class="proposal-strip">Choose after Swedish telephone tests, existing-system checks and supplier review.</div>
+
+<DeckFooter :page="16" note="S02–S03, S08–S11 / Supplier capabilities documented; combined integrations untested" />
+
+<!--
+Best-fit starting point among assessed routes, not a universal optimum. S08–S09 document native SIP and custom OpenAI-compatible streaming endpoints. A custom endpoint can wrap Hektor’s full support turn; compatible describes an interface and does not require buying another OpenAI model. Combined session lifecycle, interruptions and call control still need testing. This route may be simpler when the current SIP/PBX setup is compatible. S10: native SIP REFER lacks the spoken warm-transfer agent message available with native Twilio integration; verify PBX transfer acceptance and deliver case context separately. Do not conflate native Agents/SIP with S11 Speech Engine WebSocket plus Twilio Media Streams, which has its own bridge, transfer and pricing responsibilities. Appendix A compares modular media and Retell. Sources S08 https://elevenlabs.io/docs/eleven-agents/customization/llm/custom-llm ; S09 https://elevenlabs.io/docs/eleven-agents/phone-numbers/sip-trunking ; S10 https://elevenlabs.io/docs/eleven-agents/customization/tools/system-tools/transfer-to-number ; S11 https://elevenlabs.io/docs/eleven-agents/phone-numbers/twilio-integration/custom-llm-integration
+-->
+
+---
+
+<DeckHeader :chapter="4" />
+
 <div class="kicker">THE PILOT PATH</div>
 
 # Prepare. Test. Learn.
 
-<p class="intro">One contact page. Approved general questions. One agreed handover.</p>
+<p class="intro">Public help and human handover first. Reviewable dictation alongside.</p><div class="proposal-cards"><section><span class="card-label">GATE 01 / DESIGN</span><h2>Confirm the foundations.</h2><p>Inspect the harness interface and phone system. Agree ownership, data handling and a non-production design.</p></section><section><span class="card-label">GATE 02 / REHEARSE</span><h2>Prove the whole journey.</h2><p>Test Swedish calls, safe boundaries, transfers, case delivery and reviewed dictation. Keep web-chat checks.</p></section><section><span class="card-label">GATE 03 / DECIDE</span><h2>Review the evidence.</h2><p>Agree whether to launch the scoped pilot. Verified read-only account support needs a separate gate.</p></section></div><div class="proposal-strip">Proposed test set: 50 internal calls · about 100 focused utterances · 10–20 matched alternative calls where feasible.</div>
 
-<div class="pilot-roadmap">
-<section><div class="roadmap-marker"><span>01</span><i></i></div><div class="roadmap-label">PREPARE</div><h2>Define the scope.</h2><p>Confirm website access.<br>Approve sources.<br>Name the service owner.</p><div class="roadmap-output"><span>OUTPUT</span>An agreed pilot brief</div></section>
-<section><div class="roadmap-marker"><span>02</span><i></i></div><div class="roadmap-label">TEST</div><h2>Rehearse the experience.</h2><p>Test Swedish conversations.<br>Check mobile and keyboard use.<br>Confirm handovers arrive.</p><div class="roadmap-output"><span>OUTPUT</span>A launch decision</div></section>
-<section><div class="roadmap-marker"><span>03</span></div><div class="roadmap-label">LEARN</div><h2>Review real outcomes.</h2><p>Review answers and feedback.<br>Measure effort and costs.<br>Decide what to improve.</p><div class="roadmap-output"><span>OUTPUT</span>An evidence-based next step</div></section>
-</div>
-
-<DeckFooter :page="9" note="Scope, duration, price and launch criteria to be agreed / no implementation timeline is assumed" />
+<DeckFooter :page="17" note="Proposed gates and sample sizes / no test results yet" />
 
 <!--
-Prepare: confirm website access, approved sources, handover ownership and a concrete pilot brief. Test: rehearse Swedish questions, refusals, mobile and keyboard use, source accuracy and case delivery before deciding whether to launch. Learn: run the agreed pilot, review outcomes and full costs, and decide whether to improve, expand or stop. Duration, price and success criteria must be agreed before commissioning. The roadmap shows decisions, not a promised implementation timeline.
+No integration tests have been conducted by this presentation assignment. First inspect the full-turn interface and prepare a non-production design. Following authorization, test public support in Swedish and prove handover/case delivery before considering verified read-only customer access. Account-changing tools need separate authorization and safety review. Dictation requires human correction and an authorized case API. Proposed speech set covers Hektor terminology, Å/Ä/Ö and names, phone/customer/invoice numbers, dates, amounts, negation, corrections, regional and non-native accents, speed, silence, overlapping speech, speakerphone and background noise. Use telephone-bandwidth audio, not only clean browser microphones. Preserve web-chat source, mobile and keyboard checks. Personal-data testing still requires approval. Optional outbound follow-up is a later decision with approved purpose, calling windows, retry limits, caller identity and voicemail privacy; it is outside this inbound pilot.
 -->
 
 ---
 
-<DeckHeader :chapter="3" />
+<DeckHeader :chapter="4" />
 
 <div class="kicker">WHAT SUCCESS LOOKS LIKE</div>
 
-# Four questions decide what comes next.
+# Measure the experience, not just the call ending.
 
-<p class="intro">Agree a baseline and success criteria before launch.</p>
+<p class="intro">Agree thresholds before testing. Every result is currently “not yet measured”.</p><div class="measurement-grid">
+<section><h2>Swedish quality</h2><p>Intelligibility, terminology and critical identifiers.</p></section><section><h2>Safe behavior</h2><p>Access boundaries, retries and interruptions.</p></section><section><h2>Useful handover</h2><p>Connection success and usable context delivered.</p></section><section><h2>Documentation</h2><p>Factual fields, correction effort and case arrival.</p></section><section><h2>Responsiveness</h2><p>Speech, Hektor and tool delays measured separately.</p></section><section><h2>Actual economics</h2><p>Billed usage, staff review and repeated contacts.</p></section></div><div class="proposal-strip">Proposed no-tool response target: p50 &lt; 1.2 s / p95 &lt; 2.5 s. Full acceptance suite: Appendix D2.</div>
 
-<div class="scorecard">
-<section><span class="score-index">01</span><DeckIcon name="chat" /><div><h2>Did customers get help?</h2><p>Resolution, feedback and repeat contacts.</p></div></section>
-<section><span class="score-index">02</span><DeckIcon name="shield" /><div><h2>Were the answers reliable?</h2><p>Reviewed answers against approved sources.</p></div></section>
-<section><span class="score-index">03</span><DeckIcon name="person" /><div><h2>Did handovers work?</h2><p>Case delivery, useful context and follow-up.</p></div></section>
-<section><span class="score-index">04</span><DeckIcon name="chart" /><div><h2>Was it worth running?</h2><p>Service costs, review effort and staff time.</p></div></section>
-</div>
-
-<div class="decision-strip"><b>At the review</b><span>Improve</span><span>Expand</span><span>Stop</span><p>Choose from evidence.</p></div>
-
-<DeckFooter :page="10" note="Pilot outcomes to be measured / no savings or resolution-rate promises" />
+<DeckFooter :page="18" note="Proposed measurements / no measured savings, latency or resolution claims" />
 
 <!--
-We have no verified contact-volume or cost-per-contact data. Agree a baseline before the pilot and measure outcomes, including the work needed to review answers and operate the service. A chat that ends is not necessarily a resolved case. Ask customers and check repeat contact where the agreed data policy allows. Set thresholds jointly and review both successful and unsuccessful conversations.
+A call ending does not establish resolution. Review customer feedback, repeat contacts, answer support and follow-up under agreed data handling. Track stage latency: recognition, Hektor processing, tool execution and speech-start delay. Track failed transfers, missing cases, concurrency, actual billed usage and review time. Use correlation IDs and minimize personal data in logs instead of copying full transcripts everywhere. Targets are project proposals, not vendor guarantees or evidence of production reliability from a small sample. Full proposed acceptance targets are in Appendix D2 and research notes.
 -->
 
 ---
 
-<DeckHeader :chapter="3" />
+<DeckHeader :chapter="4" />
 
-<div class="kicker">OWNERSHIP &amp; OPERATING MODEL</div>
+<div class="kicker">OWNERSHIP & OPERATING MODEL</div>
 
 # Clear ownership from the start.
 
-<div class="ownership-matrix">
-<div class="matrix-head"><span>RESPONSIBILITY</span><span><DeckIcon name="person" />HEKTOR</span><span><DeckIcon name="chat" />IMPLEMENTATION PARTNER</span></div>
-<div><b>Service</b><span>Own scope and support follow-up</span><span>Configure the agreed experience</span></div>
-<div><b>Knowledge</b><span>Approve sources and boundaries</span><span>Set up and test the answers</span></div>
-<div><b>Operation</b><span>Approve suppliers and data handling</span><span>Monitor, review and report</span></div>
-</div>
+<div class="ownership-matrix"><div class="matrix-head"><span>RESPONSIBILITY</span><span>HEKTOR</span><span>IMPLEMENTATION / OPERATIONS</span></div><div><b>Service &amp; knowledge</b><span>Approve sources, scope and follow-up</span><span>Configure and test the agreed workflows</span></div><div><b>Access &amp; suppliers</b><span>Approve permissions, data and contracts</span><span>Implement controls and supplier connections</span></div><div><b>Daily operation</b><span>Name owners and review exceptions</span><span>Monitor delivery, failures and actual costs</span></div></div><div class="commercial-note"><div class="icon-tile"><DeckIcon name="document" /></div><div><h2>Separate the budgets.</h2><p>Supplier usage · implementation · ongoing operation · human review.<br>Proposed direct supplier billing without usage markup remains subject to agreement.</p></div></div>
 
-<div class="commercial-note"><div class="icon-tile"><DeckIcon name="document" /></div><div><h2>Transparent supplier costs.</h2><p>Proposed: Hektor holds the model-provider account and pays usage directly, without markup. Implementation and support are scoped separately.</p></div></div>
-
-<DeckFooter :page="11" note="Proposed responsibilities and commercial model / subject to agreement" />
+<DeckFooter :page="19" note="Proposed responsibilities and commercial model / subject to agreement" />
 
 <!--
-Hektor should have a named service owner, with a delivery owner on our side. The proposed commercial model keeps the language-model account and usage bill with Hektor, without a markup on that usage. Implementation and support pricing still need a separate agreement. Provider changes require testing and may need integration work; do not promise that swapping a supplier is free or instant.
+Hektor approves information, access permissions, supplier arrangements and follow-up commitments. Confirm who owns the voice adapter, original carrier fallback, case retries and privacy incidents. The existing no-markup proposal is conditional: direct Hektor supplier accounts where suitable, no markup on agreed usage; implementation, operational support and review are separately scoped and priced. Enterprise terms, minimum commitments and security/residency costs need quotes. No assumption of free supplier migration, implementation or maintenance.
 -->
 
 ---
 
-<DeckHeader />
+<DeckHeader :chapter="4" />
 
-<div class="closing-copy">
 <div class="kicker">THE NEXT CONVERSATION</div>
 
-# Let’s define the first pilot.
+# Let’s define the expanded pilot.
 
-<p class="closing-sub">Start with your common questions.<br>Leave with a clear plan.</p>
-<div class="closing-requests"><div><span>01</span><b>Name a Hektor service owner.</b></div><div><span>02</span><b>Bring approved material and example questions.</b></div><div><span>03</span><b>Confirm who manages the website.</b></div></div>
-</div>
+<div class="decision-requests"><section><span>01</span><h2>People and interfaces</h2><p>Name the service owner. Provide harness/API access and approved knowledge.</p></section><section><span>02</span><h2>Telephone and handover</h2><p>Confirm carrier/PBX details, number control and the human destination.</p></section><section><span>03</span><h2>Permission to proceed</h2><p>Complete privacy review. Agree scope, budget and success criteria.</p></section></div><div class="proposal-strip"><b>The decision requested:</b> scope an authorized proof of concept. No launch or supplier approval is assumed.</div>
 
-<div class="closing-brief">
-<div class="brief-heading"><DeckIcon name="document" /><span>THE OUTCOME</span></div>
-<h2>One agreed<br>pilot plan.</h2>
-<ul><li><DeckIcon name="check" />A focused scope</li><li><DeckIcon name="check" />Price and running costs</li><li><DeckIcon name="check" />Clear success criteria</li><li><DeckIcon name="check" />A decision to proceed</li></ul>
-<div class="brief-bottom">Useful answers.<br>People in control.</div>
-</div>
-
-<DeckFooter :page="12" note="Hektor Agent / A better first response." />
+<DeckFooter :page="20" note="Management decision requested / proposed extension, not a working telephone integration" />
 
 <!--
-Ask for a scoping discussion with a service owner and someone who can confirm website access. Bring approved material and anonymised examples of common questions. The output is a focused pilot plan: scope, implementation approach, price, running costs, duration and success criteria. The decision to proceed is an item for Hektor to make after reviewing the plan, not a foregone conclusion.
+Ask for a service owner, runtime interface documentation/access, website ownership, approved information, telephone system details, a human queue/follow-up destination, privacy and supplier review, and agreed acceptance criteria. Resolve gaps into a reviewable plan with scope, cost, owners and decision gates. This assignment produces a presentation only: no telephone runtime changes, services purchased, numbers provisioned, calls placed, routing changed, code pushed or deck published. Implementation and any public/personal-data testing require the appropriate authorization.
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX A1 / PROVIDER RESPONSIBILITIES</div>
+
+# Who owns each part of the service?
+
+<table class="proposal-table responsibility-table"><thead><tr><th>Responsibility</th><th>Twilio + adapter</th><th>ElevenLabs native SIP</th><th>Modular audio stack</th><th>Retell custom LLM</th></tr></thead><tbody><tr><td>Number / routing</td><td>Carrier + Twilio</td><td>Existing SIP / PBX</td><td>Carrier / media provider</td><td>Carrier + Retell route</td></tr><tr><td>Live speech</td><td>ConversationRelay</td><td>ElevenLabs Agents</td><td>Selected STT + TTS</td><td>Retell speech layer</td></tr><tr><td>Full support turn</td><td>Hektor via adapter</td><td>Hektor via custom endpoint</td><td>Hektor via own bridge</td><td>Hektor via custom WS</td></tr><tr><td>Business tools</td><td>Hektor</td><td>Hektor</td><td>Hektor</td><td>Hektor</td></tr><tr><td>Human transfer</td><td>Twilio call control + adapter</td><td>PBX / SIP REFER + integration</td><td>Own controller + carrier</td><td>Retell control + integration</td></tr><tr><td>Case delivery</td><td>Hektor integration</td><td>Hektor integration</td><td>Hektor integration</td><td>Hektor integration</td></tr><tr><td>Staff dictation</td><td>Scribe + Hektor review</td><td>Same separate workflow</td><td>Same separate workflow</td><td>Same separate workflow</td></tr></tbody></table><div class="proposal-strip">All four are proposed full-turn designs. A custom-LLM interface can delegate the complete Hektor workflow.</div>
+
+<DeckFooter :page="21" note="S02–S04, S08–S10, S12, S16 / Proposed allocation of responsibilities" />
+
+<!--
+Responsibility matrix describes proposed integration allocations, not an inventory of implemented Hektor APIs. Number routing and transfer ownership depend on actual carrier/PBX capabilities and chosen contract. Vendor transfer controls do not establish case delivery. Retell custom-LLM WebSocket can receive transcripts and return full-turn responses; it should not be classified as tool-only (S16). The fully modular approach means owning media transport, streaming STT/TTS, endpointing, interruptions and call control; it is not a named supplier product. S02–S04, S08–S10, S16 https://docs.retellai.com/api-references/llm-websocket . Dictation can remain an independent Scribe + reviewed Hektor workflow for all options.
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX A2 / TRADEOFFS</div>
+
+# Tradeoffs that can change the choice.
+
+<table class="proposal-table "><thead><tr><th>Approach</th><th>Why consider it</th><th>What must be resolved</th></tr></thead><tbody><tr><td>Twilio + ConversationRelay</td><td>Managed speech; Hektor receives text</td><td>Swedish quality, routing, state and call-control integration</td></tr><tr><td>ElevenLabs Agents + native SIP</td><td>May reuse PBX and remove Twilio</td><td>Streaming harness adapter; SIP REFER acceptance; separate context</td></tr><tr><td>Speech Engine + Twilio Media Streams</td><td>Documented audio bridge pattern</td><td>Own bridge, pricing and transfer work; distinct from native SIP</td></tr><tr><td>Fully modular STT / TTS</td><td>Maximum media/provider control</td><td>More streaming, interruption and operations engineering</td></tr><tr><td>Retell + custom-LLM WebSocket</td><td>Can delegate full turns to Hektor</td><td>Docs say services do not operate within EU; procurement review</td></tr></tbody></table><div class="proposal-strip">Our assessment: modular media ownership adds work the first pilot does not yet justify.</div>
+
+<DeckFooter :page="22" note="S08–S11, S16–S17 / Capabilities documented; fit is our assessment" />
+
+<!--
+Recommendations are our assessment, not vendor benchmarks. Direct SIP could win with a compatible PBX and acceptable supplier terms. Native ElevenLabs SIP REFER lacks native spoken warm-transfer messages available in its native Twilio integration (S10). S11 documents a separate Speech Engine WebSocket/Twilio Media Streams bridge; do not substitute its price or transfer behavior for Agents native SIP. S16 documents Retell custom full-turn WebSocket integration. S17 https://docs.retellai.com/general/compliance currently says services do not operate within the EU. This is a procurement consideration, not a conclusion that use is unlawful. All routes still require review of actual data flows, supplier terms and Swedish telephone performance.
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX B / TURN AND SESSION CONTRACT</div>
+
+# One full turn. Explicit session and action state.
+
+<div class="contract-grid"><section><span class="card-label">PROPOSED INPUT</span><p>Call ID · Hektor session ID<br>Unique turn/event ID<br>Swedish transcript<br>Trusted verification context</p></section><section class="contract-core"><span class="card-label">HEKTOR’S COMPLETE WORKFLOW</span><h2>Knowledge → policy → tools → response</h2><p>Durable conversation and confirmed action state.</p></section><section><span class="card-label">PROPOSED OUTPUT</span><p>Speech text · pending-job status<br>Completion / handover intent<br>Optional case reference</p></section></div><table class="proposal-table "><thead><tr><th>Event</th><th>Required behavior</th></tr></thead><tbody><tr><td>Interruption</td><td>Stop queued speech and obsolete generation; reconcile what was heard.</td></tr><tr><td>Retry / uncertain write</td><td>Persist logical action IDs; reconcile status before retrying idempotent writes.</td></tr><tr><td>Slow work / outage</td><td>Acknowledge delay; use approved follow-up or deterministic human route.</td></tr></tbody></table>
+
+<DeckFooter :page="23" note="S04 / Proposed integration contract; API, cancellation and durability are prerequisites" />
+
+<!--
+Proposed contract names, not verified Hektor APIs. Adapter must invoke the complete support workflow rather than a raw model call. Enforce permissions/identity server-side; provider text is untrusted for authorization. Validate signed callbacks and prevent replay; allowlist call-control destinations. Session-aware adapter maps calls to durable Hektor sessions. S04 interruption events include spoken-prefix/timing information; reconcile actual speech, do not assume all generated text was heard. Stop obsolete generation without assuming a committed business action was undone. Persist logical action identifiers, make case and later business writes idempotent and resolve uncertain status before retry. Pending/long jobs need acknowledgment and approved follow-up. Open/closed/busy/no-answer paths; case failure durable retry/alert; full voice-layer failure original carrier fallback. Monitor each latency stage and failures with correlation IDs and minimum personal logging. Source S04 https://www.twilio.com/docs/voice/conversationrelay/websocket-messages
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX C / COST ASSUMPTIONS</div>
+
+# Selected usage is only part of the budget.
+
+<div class="small-caption cost-assumptions">300 × 4 = 1,200 AI min · 45 × 6 = 270 human min · bridged inbound = 1,470 min · dictation = 10 h</div><table class="proposal-table cost-table"><thead><tr><th>Selected component</th><th>Illustrative calculation</th><th>USD / month</th></tr></thead><tbody><tr><td>ConversationRelay processing</td><td>1,200 × $0.07</td><td>$84.00</td></tr><tr><td>One eligible SIP / BYOC inbound tariff</td><td>1,470 × $0.004</td><td>$5.88</td></tr><tr><td>Onward Swedish fixed OR mobile leg</td><td>270 × $0.0187 OR $0.0714</td><td>$5.05–$19.28</td></tr><tr><td>Scribe batch + keyterm prompting</td><td>10 × ($0.22 + $0.05)</td><td>$2.70</td></tr><tr><td>Selected usage subtotal only</td><td>Not total operating cost or a quote</td><td>$97.63–$111.86</td></tr></tbody></table><div class="cost-exclusions"><b>Still to budget:</b> carrier/forwarding, numbers, Hektor usage, hosting/storage, monitoring, queue overhead, Enterprise terms, implementation, operation and staff review.</div>
+
+<DeckFooter :page="24" note="S07, S13 / Illustrative USD, excluding tax / recheck at procurement" />
+
+<!--
+USD excluding tax, public rates checked 10 September 2026. 15% of 300 calls =45 transferred calls. The inbound leg continues for 270 human minutes in this illustrated Twilio-bridged route, before queue/ringing/hold time. Eligible SIP/BYOC is one applicable incoming tariff, not two charges added together. Fixed OR mobile onward rates are alternatives. 270×0.0187=5.049 and 270×0.0714=19.278; round final displayed amounts to cents. Ordinary forwarding to a new number, a different destination, conference warm transfer or SIP staff endpoint needs different arithmetic. Verify actual account tariffs and billing increments. Standard managed speech is assumed in ConversationRelay; no separate Media Streams or duplicate STT/TTS charges unless required by contract. Exclusions also include model/tool/summarization usage, optional recordings, retained-storage accumulation, security commitments, supplier minimums if any and tax. Do not invent SEK conversion or Swedish number-rental quote. Scribe public usage rate is not an Enterprise residency quote; account for included plan allowances without double charging. Speech Engine is listed at $0.08/min but that rate is not automatically applicable to native Agents/SIP; verify plan, inclusions, endpoint treatment, overage and residency. S07 https://www.twilio.com/en-us/voice/pricing/se and https://www.twilio.com/en-us/products/conversational-ai/pricing ; S13 https://elevenlabs.io/pricing/api
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX D1 / PREREQUISITES AND EVIDENCE</div>
+
+# What must be known before implementation?
+
+<table class="proposal-table "><thead><tr><th>Area</th><th>Outstanding prerequisite</th></tr></thead><tbody><tr><td>Runtime</td><td>Full-turn API, streaming, session ownership, cancellation, timeouts and concurrency</td></tr><tr><td>Tools and state</td><td>Authorized tools, case API, idempotency, pending jobs and durable action audit</td></tr><tr><td>Identity</td><td>Approved verification method, assurance, read-only scope and human escalation</td></tr><tr><td>Telephony</td><td>Carrier/PBX, number control, SIP/forwarding, transfer acceptance, hours and fallback</td></tr><tr><td>Documentation</td><td>Staff notes vs whole calls, review interface, case schema and human-leg recording</td></tr><tr><td>Data and contracts</td><td>Processing/storage/access locations, disclosure, retention, supplier terms and quotes</td></tr><tr><td>Operations and budget</td><td>Traffic, peaks, Hektor runtime cost, support owners and spending limits</td></tr></tbody></table><div class="proposal-strip">Production gates remain open: interfaces, access controls, handover/cases, supplier approval and Swedish performance.</div>
+
+<DeckFooter :page="25" note="Source registry: docs/voice-dictation-research.md / S01–S20 checked 10 Sep 2026" />
+
+<!--
+This repository is a presentation, not evidence of an operational support backend. No accessible runtime interface documentation was established during this work. Readiness remains blocked until the named prerequisites are verified. Existing web-chat questions remain: website access, mobile/keyboard behavior, approved sources and ongoing ownership. Source registry, all official URLs, check dates, claim qualifications and full diagrams are in docs/voice-dictation-research.md. Source groups: S01 presentation evidence; S02–S07 Twilio; S08–S15 ElevenLabs; S16–S17 Retell; S18–S19 Hektor; S20 legal review starting points. Selected region is not proof of an EU-only chain. The review must cover exact products, processors, metadata, support access, retention by artifact and external Hektor endpoints. No diagram resolves these gaps.
+-->
+
+---
+
+<DeckHeader :chapter="5" />
+
+<div class="kicker">APPENDIX D2 / ACCEPTANCE CRITERIA</div>
+
+# Proposed targets. Results not yet measured.
+
+<table class="proposal-table acceptance-table"><thead><tr><th>Area</th><th>Acceptance target to agree</th></tr></thead><tbody><tr><td>Access boundaries</td><td>Zero unauthorized account reads in the defined security suite</td></tr><tr><td>Retry safety</td><td>Zero duplicate writes in sandbox fault-injection tests</td></tr><tr><td>Human handover</td><td>20/20 controlled transfers with usable context; busy/closed/case failure separately</td></tr><tr><td>Critical identifiers</td><td>Correctly confirmed or explicitly withheld; never silently guessed</td></tr><tr><td>Responsiveness</td><td>No-tool end-of-utterance → audible response: p50 < 1.2 s; p95 < 2.5 s</td></tr><tr><td>Interruptions</td><td>≥95% successful scripted barge-in tests, including history reconciliation</td></tr><tr><td>Dictation</td><td>≥95% factual-field accuracy before review; check critical numbers/dates before save</td></tr><tr><td>Swedish experience</td><td>Median tester rating ≥4/5 for intelligibility and naturalness</td></tr><tr><td>Failure recovery</td><td>Safe route demonstrated for Hektor, voice-layer and case-system failures</td></tr></tbody></table>
+
+<DeckFooter :page="26" note="All results: not yet measured / project targets, not supplier guarantees" />
+
+<!--
+These tests are proposed for execution after authorization, not performed in this presentation task. At least 50 internal end-to-end Swedish phone calls, roughly 100 focused utterances and 10–20 matched alternative comparisons where feasible. Include names with Å/Ä/Ö, terminology, numbers, dates, amounts, negations, corrections, accents, fast speech, silence, overlap, speakerphone and noise. Use real telephone-bandwidth audio. Define the security suite, factual-field denominator, barge-in pass rules, timing instrumentation and sample reporting before tests. A small controlled sample cannot establish production reliability. Report actual counts and uncertainty rather than presenting targets as vendor guarantees.
 -->
