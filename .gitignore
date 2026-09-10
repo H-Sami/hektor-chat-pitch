@@ -1,0 +1,22 @@
+# build output (generated)
+dist/
+slides.publish.md
+slides.local.md
+
+# local installs
+node_modules/
+.npm-cache/
+.npm-logs/
+
+# scratch: Chromium profiles, verification renders, logs
+.chrome-profile/
+.chrome-profile2/
+.chrome-verify/
+.verify-shots/
+.*.txt
+.*-log.txt
+
+# keep the rendered artifacts that ship with the deck
+!Hektor-AI-Chat-Pitch.pdf
+!mockup/shots/*.png
+!mockup/shots/*.jpg
