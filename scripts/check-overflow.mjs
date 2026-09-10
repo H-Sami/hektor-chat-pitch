@@ -92,9 +92,30 @@ const measure = () =>
       if (r.height === 0 || r.width === 0) continue
       const cs = getComputedStyle(el)
       if (cs.display === 'none' || cs.visibility === 'hidden') continue
+      // The deck's own footer is a fixed band, not slide content.
+      if (el.closest('.footer')) continue
       const bottom = r.bottom - sr.top
       if (bottom > lowest.bottom) {
         lowest = { bottom, text: (el.textContent ?? '').trim().slice(0, 44), tag: el.tagName.toLowerCase() }
+      }
+    }
+    // Content must also stay clear of the fixed footer band.
+    const footerEl = active.querySelector('.footer')
+    const footerTop = footerEl ? footerEl.getBoundingClientRect().top - sr.top : null
+    let collision = null
+    if (footerTop !== null) {
+      for (const el of layout.querySelectorAll('*')) {
+        if (el.closest('.footer')) continue
+        if (el.closest('header')) continue
+        if (el.children.length > 0) continue
+        const r = el.getBoundingClientRect()
+        if (r.height === 0 || r.width === 0) continue
+        const cs = getComputedStyle(el)
+        if (cs.display === 'none' || cs.visibility === 'hidden') continue
+        if (r.bottom - sr.top > footerTop - 4) {
+          collision = (el.textContent ?? '').trim().slice(0, 44)
+          break
+        }
       }
     }
     return {
@@ -102,6 +123,8 @@ const measure = () =>
       layoutHeight: (layout.getBoundingClientRect()).height,
       lastBottom,
       lowest,
+      footerTop,
+      collision,
       pageIndex: pages.indexOf(active) + 1,
     }
   })
@@ -117,18 +140,18 @@ for (let n = 1; n <= headings.length; n++) {
   }
   const bottom = Math.max(info.lowest.bottom, info.lastBottom)
   const overflow = bottom - info.stageHeight
-  results.push({ n, heading: headings[n - 1], overflow, info, bottom })
-  const flag = overflow > 1 ? 'CLIPPED ' : 'ok      '
-  console.log(
-    `${String(n).padStart(2)}. ${flag} content ends ${bottom.toFixed(0)} of ${info.stageHeight.toFixed(0)}  (${overflow >= 0 ? '+' : ''}${overflow.toFixed(0)}px)  slack ${(info.stageHeight - bottom).toFixed(0)}px  ${headings[n - 1].slice(0, 38)}`,
-  )
+  const bad = overflow > 1 || info.collision
+  results.push({ n, heading: headings[n - 1], overflow, info, bottom, bad })
+  const flag = bad ? 'BAD     ' : 'ok      '
+  const why = info.collision ? `footer collision: "${info.collision}"` : `ends ${bottom.toFixed(0)}/${info.stageHeight.toFixed(0)}`
+  console.log(`${String(n).padStart(2)}. ${flag} ${why}  ${headings[n - 1].slice(0, 36)}`)
 }
 
-const bad = results.filter(r => r.overflow > 1)
-console.log(`\n${bad.length} of ${results.length} slides clipped:`)
-for (const b of bad) {
-  console.log(`  ${b.n}. ${b.heading} -> overflows by ${b.overflow.toFixed(0)}px; last element: "${b.info.lowest.text}"`)
+const badSlides = results.filter(r => r.bad)
+console.log(`\n${badSlides.length} of ${results.length} slides with clipped content or a footer collision:`)
+for (const b of badSlides) {
+  console.log(`  ${b.n}. ${b.heading} -> ${b.info.collision ? `footer collision: "${b.info.collision}"` : `overflows by ${b.overflow.toFixed(0)}px; last element: "${b.info.lowest.text}"`}`)
 }
 
 await browser.close()
-process.exitCode = bad.length === 0 ? 0 : 1
+process.exitCode = badSlides.length === 0 ? 0 : 1

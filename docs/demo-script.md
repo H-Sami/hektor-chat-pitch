@@ -1,48 +1,57 @@
 # Presenter run-through: Hektor Agent
 
-Audience: Hektor management. Allow about 18–22 minutes for the 20 main slides, plus discussion. Six appendix slides support technical/procurement questions. The deck is English with illustrative Swedish dialogue. Detailed notes are embedded in every slide.
+Audience: Hektor management, non-technical. Allow about 15-18 minutes for the 18 slides, plus discussion. The deck is English with one illustrative Swedish dialogue. Detailed notes are embedded in every slide.
+
+This is the **demo-v2** cut: value first, no cost figures, no testing or appendix material.
 
 ## Before presenting
 
-Use the local extended deck or its 26-page PDF. The published site is separate and has not been updated by this assignment. Confirm the footer says 26. No calls, account access or case writes are being demonstrated. Explain the evidence boundary: documented supplier capability, proposed integration and verified presentation rendering are different things.
+Present from the local deck or its PDF. Confirm the footer reads 18. Nothing is live: no calls are placed, no accounts are read and no cases are written. The chat and phone examples are illustrations.
 
-## Main narrative
+Keep the language plain. Avoid supplier names, protocols and acronyms; the slides deliberately do not carry them.
+
+## Slide-by-slide
 
 | Slide | Heading | Presenter emphasis |
 |---|---|---|
-| 1 | A better first response. | The proposal is a better first response on Hektor's contact page. |
-| 2 | Help should be easier to find. | The contact page lists nine hours each weekday with a one-hour lunch closure. |
-| 3 | Every question needs a next step. | These are three different reasons to use the same chat: find information, express an interest, or get help from a person. |
-| 4 | A clear answer. A clear way to a person. | Walk through the Swedish WiFi-calling example. |
-| 5 | Your knowledge. Behind every answer. | The first pilot can use public information without connecting customer records. |
-| 6 | The agent explains. Your team decides. | These are proposed operating rules, not a claim that a language model can never make a mistake. |
-| 7 | A handover with the context attached. | The handover is part of the product, not an exception. |
-| 8 | General answers first. Personal support later. | We do not yet know Hektor's CRM or identity setup. |
-| 9 | One Hektor Agent. More ways to get help. | Extend the original public-information-first proposal across channels. |
-| 10 | Add a voice, not another support brain. | Proposed architecture, not deployed. |
-| 11 | A Swedish call, from question to next step. | The Swedish general answer paraphrases the public FAQ, S18 https://hektormobil.se/kontakta-oss . |
-| 12 | The next colleague receives the context. | Diagram B describes proposed handover. |
-| 13 | Dictate once. Review before saving. | Proposed documentation workflow, Diagram C. |
-| 14 | Access and actions stay under Hektor’s control. | Target design, not a compliance guarantee. |
-| 15 | A small pilot, with visible cost assumptions. | USD excluding tax; public rates checked 10 September 2026. |
-| 16 | Start simple. Keep the alternative testable. | Best-fit starting point among assessed routes, not a universal optimum. |
-| 17 | Prepare. Test. Learn. | No integration tests have been conducted by this presentation assignment. |
-| 18 | Measure the experience, not just the call ending. | A call ending does not establish resolution. |
-| 19 | Clear ownership from the start. | Hektor approves information, access permissions, supplier arrangements and follow-up commitments. |
-| 20 | Let’s define the expanded pilot. | Ask for a service owner, runtime interface documentation/access, website ownership, approved information, telephone system details, a human queue/follow-up destination, privacy and supplier review, and agreed acceptance criteria. |
-| 21 | Who owns each part of the service? | Responsibility matrix describes proposed integration allocations, not an inventory of implemented Hektor APIs. |
-| 22 | Tradeoffs that can change the choice. | Recommendations are our assessment, not vendor benchmarks. |
-| 23 | One full turn. Explicit session and action state. | Proposed contract names, not verified Hektor APIs. |
-| 24 | Selected usage is only part of the budget. | USD excluding tax, public rates checked 10 September 2026. |
-| 25 | What must be known before implementation? | This repository is a presentation, not evidence of an operational support backend. |
-| 26 | Proposed targets. Results not yet measured. | These tests are proposed for execution after authorization, not performed in this presentation task. |
+| 1 | A better first response. | Open on the customer, not the technology. |
+| 2 | Why this matters to your customers. | **Lead with value.** Answers at any hour, every customer served at once, and always a next step. This is the slide that should land first. |
+| 3 | Help should be easier to find. | Your answers already exist. 40 staffed hours a week, 128 outside them. |
+| 4 | Every question needs a next step. | Three reasons to use the same chat: find information, express interest, reach a person. |
+| 5 | A clear answer. A clear way to a person. | Walk the Swedish WiFi-calling example. Point at the source link and the button to a human. |
+| 6 | Your knowledge. Behind every answer. | The first version uses only public information. Hektor owns the answers and names an owner. |
+| 7 | The agent explains. Your team decides. | Agree the boundaries. No account-changing actions in the first pilot. |
+| 8 | A handover with the context attached. | The handover is part of the product, not an exception. |
+| 9 | General answers first. Personal support later. | Prove the experience before connecting customer records. |
+| 10 | One Hektor Agent. More ways to get help. | One shared brain, three ways in: chat, phone, dictation. |
+| 11 | Add a voice, not another support brain. | Proposed, not deployed. Hektor stays the authority on every answer. |
+| 12 | A Swedish call, from question to next step. | Read the Swedish exchange aloud. Pause at the account-access boundary. |
+| 13 | The next colleague receives the context. | Connecting the call and delivering the case are two separate steps. |
+| 14 | Dictate once. Review before saving. | Staff notes are drafted, then approved by a person before anything is saved. |
+| 15 | Access and actions stay under Hektor's control. | Verify, authorize on the server, and always keep a route to a person. |
+| 16 | Two ways to add the phone. | Keep this high level: a managed voice service, or Hektor's own phone system. No decision needed today. |
+| 17 | Prepare. Test. Learn. | Three gates: confirm the foundations, prove the journey, review the evidence. |
+| 18 | Thank you. | Stop selling. Thank them, and ask for the three small things on the slide. |
 
-## Discussion and close
+## Where to linger
 
-Spend the first third on the preserved web-chat experience, the middle third on the voice/dictation decisions, and the final third on pilot gates and ownership. On slide 11 read the exact Swedish exchange and pause at the account-access boundary. On slide 12 distinguish connecting the call from delivering the case. On slide 13 explain that the subsequent human call leg is not automatically transcribed. On slide 15 say “84 dollars is processing only,” then use Appendix C if asked for the rest.
+- **Slide 2** is the pitch. If the room only remembers one slide, it should be this one.
+- **Slide 12** carries the trust story: the agent answers what it may, and stops at the account boundary.
+- **Slide 16** is the only technical choice in the deck. Say it in one sentence and move on.
 
-Seek a named owner, harness/interface access, telephone-system details, a human destination, privacy review and agreed scope/budget/criteria. Do not imply that this discussion authorizes deployment, suppliers or personal-data tests. All acceptance results are “not yet measured.”
+## Do not say
+
+- Any price, rate or monthly cost. Those are not in this deck and are not settled.
+- Any delivery date or phase length.
+- Any supplier or product name.
+- Any test result. Nothing has been measured yet.
+
+If asked about cost or timeline, say it is a separate commercial conversation and the next step is a short technical discussion, not a commitment.
+
+## The close
+
+Thank the room. Ask for three things: a scope (chat, phone, or both), one named person at Hektor who owns the answers, and their definition of a good result.
 
 ## Reference material
 
-[Research and source registry](voice-dictation-research.md) contains the full diagrams, contract, cost assumptions and official URLs. [Gap analysis](gap-analysis.md) records unresolved readiness gates. A1/A2 compare responsibilities and tradeoffs; B explains state; C explains selected costs; D1/D2 cover prerequisites and proposed tests.
+[Voice and dictation research](voice-dictation-research.md) holds the full technical detail, diagrams, contract notes, cost assumptions and source registry - the material that was deliberately removed from this presentation. [Gap analysis](gap-analysis.md) records unresolved readiness questions.

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({ chapter: { type: Number, default: 0 } })
-const chapters = ['Opportunity', 'Web chat', 'Voice & dictation', 'Pilot', 'Appendix']
+const chapters = ['Opportunity', 'Web chat', 'Voice & dictation', 'Pilot']
 </script>
 
 <template>

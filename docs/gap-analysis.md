@@ -1,6 +1,8 @@
 # Evidence and open questions
 
-Updated 10 September 2026 for 20 main slides and six appendix slides. This is presentation work, not a working support backend or telephone deployment.
+Updated for the `demo-v2` cut: 18 management-facing slides with no cost, testing or appendix material. This is presentation work, not a working support backend or telephone deployment.
+
+The technical detail that used to be on slides now lives in [voice-dictation-research.md](voice-dictation-research.md). Nothing in it is claimed by the presentation.
 
 ## What the repository establishes
 
@@ -10,9 +12,9 @@ The [Hektor contact page](https://hektormobil.se/kontakta-oss), checked on the b
 
 ## Proposed scope
 
-Retain website chat for approved general information and human handover. Extend the proposal to Swedish telephone public help via ConversationRelay and a session-aware Hektor adapter, with separate reviewed Scribe dictation. Reuse live AI transcripts for documentation without duplicate STT by default. Verified read-only account access is a separate later gate; account-changing actions require separate authorization and safety review.
+Website chat for approved general information and human handover, extended to Swedish telephone public help and separate reviewed staff dictation. One Hektor Agent owns the answer across all three; only the way the customer reaches it changes.
 
-The alternative native ElevenLabs Agents/SIP plus custom full-turn endpoint may be simpler for a compatible existing PBX. It is not the separate Speech Engine/Twilio Media Streams pattern. Supplier claims and their limitations were checked in the [S01–S20 registry](voice-dictation-research.md). Swedish telephone quality, cost savings and operational reliability have not been measured.
+The `demo-v2` deck presents the telephone extension as a high-level choice between a managed voice service and Hektor's own phone system, with the technical selection left to a later conversation. The concrete mechanisms (speech interface, adapter, session handling, dictation workflow) are documented in the [research document](voice-dictation-research.md) and are deliberately kept out of the presentation. Swedish telephone quality, cost and operational reliability have not been measured.
 
 ## Missing information before implementation
 
@@ -31,10 +33,18 @@ The alternative native ElevenLabs Agents/SIP plus custom full-turn endpoint may 
 
 Confirm the full-turn interface and non-production design first. After authorization, test Swedish public help, complete handover/case delivery and reviewable dictation. Assess approved identity and read-only access separately. Production readiness remains blocked by unresolved interfaces/authentication, handover/case reliability, supplier/data approval and untested Swedish performance. Any test involving personal data still requires appropriate approval.
 
-Proposed targets and sample sizes are recorded in Appendix D2 and the research document; every result remains **not yet measured**. A call ending is not proof of resolution. Local build, browser and PDF checks only validate presentation artifacts.
+Proposed targets and sample sizes are recorded in the research document; every result remains **not yet measured**. A call ending is not proof of resolution. Local build, browser and PDF checks only validate presentation artifacts.
 
-## Budget and privacy limits
+## Removed from the presentation
 
-The $84/month ConversationRelay processing example and $97.63–$111.86 selected usage subtotal are illustrative USD amounts, excluding tax. Neither is total operating cost or a quote. Carrier routing, plan allowances, Enterprise terms, implementation, ongoing operation and human review require separate agreement. No markup on agreed direct supplier usage remains a conditional commercial proposal.
+The `demo-v2` deck deliberately omits three things that earlier drafts carried. They remain valid work, but they are not for a non-technical management audience:
 
-IE1 does not establish an EU-only processing chain. ElevenLabs regional residency is Enterprise and configuration-dependent. Hektor's published up-to-90-day recorded-call/chat retention is context, not blanket approval for new vendors or every artifact. Privacy and applicable Swedish/EU obligations need Hektor review; no compliance sign-off is implied.
+- **Cost figures.** Illustrative USD amounts and the selected-usage subtotal are in the research document. They were never total operating cost or a quote, and presenting them invited the wrong conversation.
+- **Testing and acceptance detail.** Proposed sample sizes, latency targets and acceptance criteria live in the research document.
+- **Supplier and protocol choices.** Speech providers, interfaces and session contracts were removed from the slides and belong in a technical review.
+
+If any of these is needed in a later conversation, take it from [voice-dictation-research.md](voice-dictation-research.md) rather than reintroducing it into the deck.
+
+## Privacy still applies
+
+Hektor's published up-to-90-day recorded-call/chat retention is context, not blanket approval for new vendors or every artifact. Even the public-information chat can receive personal data typed by a customer, so the pilot needs an agreed collection and handling policy. Privacy and applicable Swedish/EU obligations need Hektor review; no compliance sign-off is implied.
