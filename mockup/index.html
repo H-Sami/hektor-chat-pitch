@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hektor · AI chat agent on Kontakta oss — prototype</title>
+<title>Hektor Agent on Kontakta oss - prototype</title>
 <style>
   :root {
     --brand: #10b981;
@@ -196,7 +196,7 @@
 
   <div class="hero">
     <h1>Kontakta oss</h1>
-    <p>Befintlig kund — fyll i dina uppgifter så återkommer vi. Har du ett brådskande ärende kan du ringa 070-100 01 00 under öppettiderna.</p>
+    <p>Befintlig kund - fyll i dina uppgifter så återkommer vi. Har du ett brådskande ärende kan du ringa 070-100 01 00 under öppettiderna.</p>
   </div>
 
   <div class="contact">
@@ -217,9 +217,9 @@
         <b>support@hektormobil.se</b><br />
         <b>070-100 01 00</b>
         <div class="hours">
-          <div><span>Måndag – Fredag</span><b>08:00 – 17:00</b></div>
-          <div><span>Lunchstängt</span><b>12:00 – 13:00</b></div>
-          <div><span>Lördag – Söndag</span><b>Stängt</b></div>
+          <div><span>Måndag - Fredag</span><b>08:00 - 17:00</b></div>
+          <div><span>Lunchstängt</span><b>12:00 - 13:00</b></div>
+          <div><span>Lördag - Söndag</span><b>Stängt</b></div>
         </div>
       </div>
     </div>
@@ -237,8 +237,8 @@
   <div class="chead">
     <div class="ava">H</div>
     <div>
-      <div class="who">Hektor Support</div>
-      <div class="status"><span class="dot"></span> AI-assistent · svarar direkt</div>
+      <div class="who">Hektor Agent</div>
+      <div class="status"><span class="dot"></span> Svarar direkt, dygnet runt</div>
     </div>
     <div class="x" id="closeChat">&#10005;</div>
   </div>
@@ -246,7 +246,7 @@
   <div class="body" id="body"></div>
 
   <div class="foot">
-    <div class="brandline">AI-assistent · Prototyp för demo · Inga riktiga kunduppgifter</div>
+    <div class="brandline">Hektor Agent · Prototyp för demo · Inga riktiga kunduppgifter</div>
     <div class="composer">
       <div class="inp" id="composerText">Skriv ett meddelande…</div>
       <button class="sendbtn" id="composerSend">&#10148;</button>
@@ -265,13 +265,13 @@
   const escalate = document.getElementById('escalate');
 
   const SCRIPT = [
-    { from: 'bot', html: 'Hej! Jag är Hektors AI-assistent. Jag kan svara på frågor om abonnemang, fakturor, täckning och våra tjänster — dygnet runt. Vad kan jag hjälpa dig med?' },
+    { from: 'bot', html: 'Hej! Jag är Hektor Agent. Jag kan svara på frågor om abonnemang, fakturor, täckning och våra tjänster - dygnet runt. Vad kan jag hjälpa dig med?' },
     { from: 'user', html: 'Varför är min första faktura högre än abonnemangspriset?' },
     { from: 'bot', html: 'Din första faktura täcker perioden från aktiveringen till slutet av månaden, plus en engångsavgift på <b>299 kr inkl. moms</b> (299 kr exkl. moms för företag) om inget annat avtalats. Därför blir den högre än månadspriset.' },
-    { from: 'bot', html: '<span class="src">Källa: <a href="#">Vanliga frågor — ”Varför är min första faktura högre som ny kund?”</a> · Hektors allmänna villkor</span>' },
+    { from: 'bot', html: '<span class="src">Källa: <a href="#">Vanliga frågor - ”Varför är min första faktura högre som ny kund?”</a> · Hektors allmänna villkor</span>' },
     { from: 'user', html: 'Kan ni dela upp den på två betalningar?' },
-    { from: 'bot', html: 'Det är en betalningsuppgörelse, så den vill jag inte avgöra själv. Jag kan koppla dig till en kollega som tittar på just dina fakturor — jag skickar med hela konversationen så du slipper upprepa dig.' },
-    { from: 'handover', html: '<div class="t">Vidarekopplad till en kollega</div>Kundnummer <b>104287</b> · Kontaktnummer <b>07X-XXX XX 12</b><br />Ärende: dela upp första fakturan<br /><span class="src">Konversationen skickas med · Öppettider vardagar 08:00–17:00</span>' },
+    { from: 'bot', html: 'Det är en betalningsuppgörelse, så den vill jag inte avgöra själv. Jag kan koppla dig till en kollega som tittar på just dina fakturor - jag skickar med hela konversationen så du slipper upprepa dig.' },
+    { from: 'handover', html: '<div class="t">Vidarekopplad till en kollega</div>Kundnummer <b>104287</b> · Kontaktnummer <b>07X-XXX XX 12</b><br />Ärende: dela upp första fakturan<br /><span class="src">Konversationen skickas med · Öppettider vardagar 08:00-17:00</span>' },
     { from: 'bot', html: 'En kollega tar över här i samma fönster. Är det något mer jag kan svara på under tiden?' },
   ];
 

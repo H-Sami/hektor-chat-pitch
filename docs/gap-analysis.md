@@ -1,4 +1,4 @@
-# Gap analysis - Hektor AI chat agent pitch
+# Gap analysis - Hektor Agent pitch
 
 Prepared before building the deck. This is the honest list of what is known, what was
 assumed, what the tools cannot do, and what Hektor has to answer before a build starts.
@@ -44,7 +44,7 @@ The deck uses 123 consistently, on the opening slide, the objection slide and th
 3. **Volume and cost per contact.** No public data. Every deflection and ROI number in the
    deck is therefore framed as a pilot KPI, not as a projected saving. Do not invent
    figures in front of management; ask for current monthly contact volume.
-4. **The AI supplier decision.** The deck describes behaviour, not a vendor. If the pitch
+4. **The language model supplier decision.** The deck describes behaviour, not a vendor. If the pitch
    is as an implementation partner, the deck needs a cost model and a named stack before
    the second meeting.
 5. **Swedish-language model quality.** The deck is in English, but the live agent must
@@ -52,7 +52,7 @@ The deck uses 123 consistently, on the opening slide, the objection slide and th
    mixes Swedish and English terms. A Swedish evaluation set is required before Phase 1
    acceptance, and it is not covered by any slide yet.
 6. **Personnummer handling.** The site's homepage form asks for *Personnr. / Org.nr.* and
-   the contact page asks for *Kundnummer*. Any AI flow that touches these needs an explicit
+   the contact page asks for *Kundnummer*. Any automated flow that touches these needs an explicit
    masking rule and a legal basis. The deck states the principle; the implementation detail
    is unverified.
 7. **Accessibility requirements.** A chat widget on a Swedish operator site should meet
@@ -78,7 +78,9 @@ The deck uses 123 consistently, on the opening slide, the objection slide and th
 
 ## 4. Assumptions stated in the deck
 
-- Deck audience: Hektor management, non-technical; architecture is component-level only.
+- Deck audience: Hektor management, non-technical; the deck is written in plain language and
+  says "Hektor Agent", never "AI". Technical job titles (orchestrator, gateway, RAG, token)
+  are kept out of the slides on purpose.
 - English deck, Swedish proper nouns and quoted site copy left untranslated.
 - No em-dashes in the deck or the docs; regular hyphens only, including in Swedish date and
   time ranges.
@@ -86,7 +88,7 @@ The deck uses 123 consistently, on the opening slide, the objection slide and th
 - All customer examples and identifiers in the mockup are synthetic (`104287`, `07X-XXX XX 12`).
 - Pilot targets (≥ 40 % deflection, < 10 s first response, 24/7 coverage, zero incorrect
   price statements) are proposals to be agreed, not commitments.
-- Hektor remains GDPR controller; the AI supplier is a processor under a data processing
+- Hektor remains GDPR controller; the language model supplier is a processor under a data processing
   agreement.
 - The model provider is presented as Hektor's own choice and account, with Hektor's own API
   key. This is deliberate: it removes vendor lock-in and answers the procurement question,
@@ -100,7 +102,7 @@ The deck uses 123 consistently, on the opening slide, the objection slide and th
 2. Which CRM, and does it expose an API or a scheduled export?
 3. How many contacts arrive per month, split by channel (form, email, phone)?
 4. What share of those are already answered by the published FAQ?
-5. Who owns the answers - who may approve what the AI is allowed to say?
+5. Who owns the answers - who may approve what the Hektor Agent is allowed to say?
 6. What is the escalation promise outside 08:00-17:00 today, if any?
 7. Are there contractual or procurement constraints on Hektor holding a model provider
    account and an API key, and are there providers they will not use?

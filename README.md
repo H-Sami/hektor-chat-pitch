@@ -1,7 +1,7 @@
-# Hektor AI chat agent - pitch deck
+# Hektor Agent - pitch deck
 
-A management-facing pitch for putting an **AI chat agent inside the contact page** of
-[hektormobil.se](https://hektormobil.se/kontakta-oss): the agent answers from Hektor's own
+A management-facing pitch for putting the **Hektor Agent inside the contact page** of
+[hektormobil.se](https://hektormobil.se/kontakta-oss): it answers from Hektor's own
 published material and from their CRM, and hands the conversation to a human in the same
 window when it should.
 
@@ -64,6 +64,17 @@ shareable slide URL and PDF when that service is reachable.
 | `scripts/serve-dist.mjs` | Serves `dist/` on localhost for local verification |
 | `docs/gap-analysis.md` | Verified facts about Hektor, open questions, tooling limits, assumptions |
 | `docs/demo-script.md` | 12-minute spoken script, objection handling, fallback plan |
+
+## Terminology
+
+The assistant is called the **Hektor Agent** everywhere in the deck, the docs and the
+speaker script. "AI" is deliberately not used as a noun for it, because the audience is
+non-technical management and the deck is written in plain language: no "orchestrator", no
+"RAG", no "token", no "API key" without a plain-English gloss.
+
+Two names are infrastructure and cannot be changed without breaking live URLs, so they keep
+"AI": the repository `hektor-chat-pitch` publishes to `h-sami.github.io/hektor-chat-pitch/`,
+and the committed fallback is `Hektor-AI-Chat-Pitch.pdf`.
 
 ## Publishing to GitHub Pages
 
