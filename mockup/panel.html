@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hektor · AI chat window (isolated panel)</title>
+<style>
+  :root {
+    --brand: #10b981;
+    --brand-soft: rgba(16, 185, 129, 0.10);
+    --ink: #10231c;
+    --muted: #6b7b76;
+    --line: #e3e8e6;
+    --warn: #f59e0b;
+    --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    font-family: var(--sans); color: var(--ink);
+    background: radial-gradient(120% 120% at 20% 10%, #f2f7f5 0%, #e4ebe8 55%, #dbe4e1 100%);
+    display: grid; place-items: center;
+  }
+  .stage { display: flex; align-items: center; gap: 54px; padding: 40px; }
+
+  .pitch { max-width: 330px; }
+  .pitch .kicker { font-size: 12px; font-weight: 800; letter-spacing: .18em; color: var(--brand); text-transform: uppercase; }
+  .pitch h2 { font-size: 30px; line-height: 1.2; margin: 12px 0 14px; letter-spacing: -0.02em; }
+  .pitch p { font-size: 14.5px; line-height: 1.7; color: #4a5a55; margin: 0 0 16px; }
+  .pitch ul { margin: 0; padding: 0; list-style: none; }
+  .pitch li { font-size: 14px; line-height: 1.6; padding: 9px 0 9px 30px; position: relative; color: #2c3b36; }
+  .pitch li::before {
+    content: ""; position: absolute; left: 0; top: 14px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--brand-soft); border: 2px solid var(--brand);
+  }
+  .pitch li::after {
+    content: ""; position: absolute; left: 5px; top: 19px;
+    width: 6px; height: 3px; border-left: 2px solid var(--brand); border-bottom: 2px solid var(--brand);
+    transform: rotate(-45deg);
+  }
+
+  .chat {
+    width: 430px; height: 780px;
+    background: #fff; border-radius: 16px; overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 30px 70px rgba(12, 40, 32, 0.26), 0 2px 0 rgba(255,255,255,.6) inset;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .chead { background: linear-gradient(135deg, #0ea271, #10b981); color: #fff; padding: 15px 18px; display: flex; align-items: center; gap: 12px; }
+  .chead .ava { width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.22); display: grid; place-items: center; font-weight: 800; font-size: 15px; }
+  .chead .who { font-weight: 700; font-size: 15px; line-height: 1.25; }
+  .chead .status { font-size: 12px; opacity: 0.92; display: flex; align-items: center; gap: 6px; }
+  .chead .dot { width: 7px; height: 7px; border-radius: 50%; background: #b8f5dc; display: block; }
+
+  .body { flex: 1; overflow: hidden; padding: 16px 16px 6px; background: #f7faf9; }
+  .msg { margin-bottom: 11px; display: flex; }
+  .msg.bot { justify-content: flex-start; }
+  .msg.user { justify-content: flex-end; }
+  .bubble { max-width: 86%; width: fit-content; padding: 10px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.6; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .msg.user .bubble { background: #eaf6f1; border-color: #d3ebe1; border-bottom-left-radius: 12px; border-bottom-right-radius: 4px; }
+  .bubble b { font-weight: 700; }
+  .src { display: block; margin-top: 8px; font-size: 12px; color: #5c7a70; }
+  .src a { color: #0e9c6d; text-decoration: none; font-weight: 600; }
+
+  .handover { border-left: 3px solid var(--warn); background: #fffaf0; border-radius: 4px 10px 10px 4px; padding: 11px 13px; font-size: 13px; max-width: 88%; width: fit-content; line-height: 1.6; }
+  .handover .t { font-weight: 700; color: #b45309; margin-bottom: 5px; }
+
+  .foot { border-top: 1px solid var(--line); padding: 10px 14px 13px; background: #fff; }
+  .brandline { font-size: 11px; color: #93a29d; text-align: center; margin-bottom: 8px; }
+  .composer { display: flex; align-items: center; gap: 8px; }
+  .composer .inp { flex: 1; height: 40px; border: 1px solid var(--line); border-radius: 10px; padding: 0 13px; font-size: 13.5px; color: #9aa6a2; display: flex; align-items: center; background: #fbfcfc; }
+  .composer .sendbtn { width: 40px; height: 40px; border-radius: 10px; border: 0; background: var(--brand); color: #fff; font-size: 15px; }
+  .escalate {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 9px; height: 36px; border-radius: 9px;
+    border: 1px solid var(--brand); background: var(--brand-soft); color: #0b7a56;
+    font-size: 13px; font-weight: 700;
+  }
+  .escalate.used { border-color: var(--line); background: #f4f6f5; color: #97a5a1; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="pitch">
+    <div class="kicker">Hektor · Kontakta oss</div>
+    <h2>The same window answers, and hands over.</h2>
+    <p>Every answer is grounded in Hektor's own material and shows where it came from. When the question needs a person, the colleague takes over in the same window — with the conversation already written down.</p>
+    <ul>
+      <li>Answer in seconds, with the source attached</li>
+      <li>Prices and terms read from Hektor's data</li>
+      <li>One visible button to reach a human</li>
+      <li>Full transcript travels with the handover</li>
+    </ul>
+  </div>
+
+  <div class="chat">
+    <div class="chead">
+      <div class="ava">H</div>
+      <div>
+        <div class="who">Hektor Support</div>
+        <div class="status"><span class="dot"></span> AI-assistent · svarar direkt</div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="msg bot"><div class="bubble">Hej! Jag är Hektors AI-assistent. Jag kan svara på frågor om abonnemang, fakturor, täckning och våra tjänster — dygnet runt. Vad kan jag hjälpa dig med?</div></div>
+      <div class="msg user"><div class="bubble">Varför är min första faktura högre än abonnemangspriset?</div></div>
+      <div class="msg bot"><div class="bubble">Din första faktura täcker perioden från aktiveringen till slutet av månaden, plus en engångsavgift på <b>299 kr inkl. moms</b> (299 kr exkl. moms för företag) om inget annat avtalats. Därför blir den högre än månadspriset.</div></div>
+      <div class="msg bot"><div class="bubble"><span class="src">Källa: <a href="#">Vanliga frågor — ”Varför är min första faktura högre som ny kund?”</a> · Hektors allmänna villkor</span></div></div>
+      <div class="msg user"><div class="bubble">Kan ni dela upp den på två betalningar?</div></div>
+      <div class="msg bot"><div class="bubble">Det är en betalningsuppgörelse, så den vill jag inte avgöra själv. Jag kopplar dig till en kollega som tittar på just dina fakturor — jag skickar med hela konversationen så du slipper upprepa dig.</div></div>
+      <div class="msg bot"><div class="handover"><div class="t">Vidarekopplad till en kollega</div>Kundnummer <b>104287</b> · Kontaktnummer <b>07X-XXX XX 12</b><br />Ärende: dela upp första fakturan<br /><span class="src">Konversationen skickas med · Öppettider vardagar 08:00–17:00</span></div></div>
+    </div>
+
+    <div class="foot">
+      <div class="brandline">AI-assistent · Prototyp för demo · Inga riktiga kunduppgifter</div>
+      <div class="composer">
+        <div class="inp">Skriv ett meddelande…</div>
+        <div class="sendbtn">&#10148;</div>
+      </div>
+      <div class="escalate">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Prata med en människa
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
