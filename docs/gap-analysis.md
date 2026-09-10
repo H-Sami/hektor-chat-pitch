@@ -33,9 +33,9 @@ These are open design and commercial questions. No statement in the deck is a gu
 
 ## Tooling and publishing
 
-The redesign uses Slidev locally, with `slides.md` and shared `style.css`. Its supported output paths are a static build and PDF export. Node 22.12 or later is needed by the locked dependencies. Verification uses installed Chrome on Windows and checks all slide titles, browser errors, text bounds and footer collisions before capturing screenshots.
+The redesign uses Slidev locally, with `slides.md`, shared `style.css` and reusable Vue components under `components/`. Its supported output paths are a static build and PDF export. The visual design uses a forest-green cover and closing, light content slides, a proportional weekly-hours chart and a branching customer-journey diagram. Section navigation and page progress help orient the audience. Node 22.12 or later is needed by the locked dependencies. Verification uses installed Chrome on Windows and checks all slide titles, browser errors, text bounds and footer collisions before capturing screenshots.
 
-The previous hosted Slidev MCP workflow is optional legacy tooling. The old markdown-packaging helper does not bundle the redesigned CSS, so do not assume its output reproduces this version. The current session's MCP access and service availability have not been tested. No MCP installation is necessary for local editing.
+The previous hosted Slidev MCP workflow is optional legacy tooling. The old markdown-packaging helper does not bundle the redesigned CSS or Vue components, so do not assume its output reproduces this version. The current session's MCP access and service availability have not been tested. No MCP installation is necessary for local editing.
 
 GitHub Pages serves the separate `gh-pages` branch. Source commits alone do not deploy the deck. Rebuild with the project asset base and include the new PDF when publishing.
 

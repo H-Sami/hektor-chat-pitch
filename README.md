@@ -2,7 +2,9 @@
 
 A 12-slide management proposal for a Hektor Agent on the contact page: useful general answers, a clear handover to staff, and a focused pilot before customer-record integration.
 
-The editable presentation is in **slides.md**; its white and green design is in **style.css**. Each slide has presenter notes. No Slidev MCP is required.
+The editable presentation is in **slides.md**. Its design combines forest-green opening, knowledge and closing slides with light content slides, a proportional weekly-hours chart, a customer-journey diagram and a readable chat illustration. Shared styling is in **style.css**; reusable headers, footers, vector icons and the schedule chart are in **components/**. Each slide has presenter notes. No Slidev MCP is required.
+
+![Overview of the 12-slide Hektor Agent presentation](docs/preview.png)
 
 ## Preview and edit
 
@@ -52,12 +54,13 @@ The existing published deck is at https://h-sami.github.io/hektor-chat-pitch/. G
 |---|---|
 | `slides.md` | Slide content and speaker notes |
 | `style.css` | Shared typography, layouts and colours |
+| `components/` | Section navigation, page progress, vector icons and the weekly schedule |
 | `docs/demo-script.md` | Presenter run-through matching the 12-slide deck |
 | `docs/gap-analysis.md` | Source context, assumptions and questions for Hektor |
 | `scripts/verify-deck.mjs` | Browser verification and screenshots |
 | `mockup/` | Earlier standalone scripted prototype and screenshots |
 
-The older `build-publish.mjs` and `build:local` helpers are retained for the earlier hosted workflow. They do not package `style.css`; their markdown output alone will not reproduce this redesign in a hosted MCP renderer. Use the local Slidev build or GitHub Pages for this version.
+The older `build-publish.mjs` and `build:local` helpers are retained for the earlier hosted workflow. They do not package `style.css` or `components/`; their markdown output alone will not reproduce this redesign in a hosted MCP renderer. Use the local Slidev build or GitHub Pages for this version.
 
 ## Content conventions
 

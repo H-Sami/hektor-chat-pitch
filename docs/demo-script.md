@@ -11,17 +11,17 @@ Open the local or published deck and check the title matches **A better first re
 | Time | Slide | Main point |
 |---|---|---|
 | 0:00 | 1. A better first response. | Propose easier access to answers and a useful connection to Hektor's people. This is a proposal, not a product demonstration. |
-| 0:40 | 2. Questions do not follow office hours. | Approved answers already exist. A chat can make them easier to find outside staffed hours. |
-| 1:30 | 3. One conversation. A useful next step. | Answer a general question, guide an enquiry, or prepare a request for a person. |
-| 2:20 | 4. Helpful first. Human when needed. | Read the Swedish WiFi-calling example. Show the source and the explicit handover. |
-| 3:10 | 5. Start with what Hektor already publishes. | Begin with approved public material. Name someone to own and update it. |
-| 3:55 | 6. Set clear limits before the first chat. | General explanations belong in the pilot. Account changes and commercial decisions stay with the team. |
-| 4:40 | 7. Make the handover worth receiving. | The next colleague receives the question, what was tried and a clear next step. |
-| 5:25 | 8. Customer records come later. | Treat personal support as a separate phase with identity, access and data-handling decisions. |
-| 6:10 | 9. A small scope. A real test. | One page, approved sources and a rehearsed handover. Test Swedish, mobile and keyboard use before launch. |
-| 7:05 | 10. Measure usefulness, not just activity. | Agree a baseline and evaluate outcomes, answer quality, handovers and the full operating cost. |
-| 8:00 | 11. Clear responsibilities from day one. | Hektor owns service decisions. The implementation partner configures, tests and reports. Explain the proposed supplier billing model. |
-| 8:55 | 12. Shall we scope the pilot? | Ask for a service owner, approved material and a scoping discussion that produces a price and success criteria. |
+| 0:40 | 2. Help should be easier to find. | Approved answers already exist. A chat can make them easier to find outside staffed hours. |
+| 1:30 | 3. Every question needs a next step. | Answer a general question, guide an enquiry, or prepare a request for a person. |
+| 2:20 | 4. A clear answer. A clear way to a person. | Read the Swedish WiFi-calling example. Match marker 1 to the source and marker 2 to the visible route to a person. |
+| 3:10 | 5. Your knowledge. Behind every answer. | Begin with approved public material. Name someone to own and update it. |
+| 3:55 | 6. The agent explains. Your team decides. | General explanations belong in the pilot. Account changes and commercial decisions stay with the team. |
+| 4:40 | 7. A handover with the context attached. | The next colleague receives the question, what was tried and a clear next step. |
+| 5:25 | 8. General answers first. Personal support later. | Treat personal support as a separate phase with identity, access and data-handling decisions. |
+| 6:10 | 9. Prepare. Test. Learn. | Follow Prepare, Test, Learn. Each step produces a decision or deliverable; no dates are implied. |
+| 7:05 | 10. Four questions decide what comes next. | Agree a baseline and evaluate outcomes, answer quality, handovers and the full operating cost. |
+| 8:00 | 11. Clear ownership from the start. | Hektor owns service decisions. The implementation partner configures, tests and reports. Explain the proposed supplier billing model. |
+| 8:55 | 12. Let’s define the first pilot. | Ask for a service owner, approved material and a scoping discussion that produces a price and success criteria. |
 
 ## Facts and careful wording
 
