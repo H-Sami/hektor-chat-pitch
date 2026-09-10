@@ -311,3 +311,72 @@
 @media print {
   .slidev-layout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* Voice proposal: editable layouts, with diagrams kept as Mermaid source. */
+.chapter-nav { gap: 16px; }
+.chapter-nav > span { gap: 5px; font-size: 10px; }
+.proposal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }
+.proposal-cards section { padding: 25px; border: 1px solid var(--line); border-radius: 10px; background: #edf3ed; min-height: 230px; }
+.card-label { display: block; color: #50745b; font-size: 10px; letter-spacing: 1.2px; font-weight: 600; }
+.proposal-cards h2 { margin: 21px 0 15px; font-size: 27px; line-height: 1.15; }
+.proposal-cards p { font-size: 19px; line-height: 1.5; }
+.proposal-strip { margin-top: 20px; padding: 14px 20px; border-left: 3px solid #4e8a63; background: #e8f0e8; color: #365a41; font-size: 17px; line-height: 1.4; }
+.proposal-strip b { margin-right: 9px; }
+.voice-diagram { display: flex; align-items: center; justify-content: center; height: 260px; margin-top: 18px; }
+.voice-diagram .mermaid { width: 100%; text-align: center; }
+.dialogue-label { margin-top: 20px; font-size: 10px; color: #50745b; letter-spacing: 1.5px; }
+.phone-dialogue { margin-top: 12px; display: grid; gap: 7px; }
+.phone-dialogue > div { display: grid; grid-template-columns: 90px 1fr; gap: 15px; border-radius: 7px; padding: 11px 17px; background: #eaf2ea; }
+.phone-dialogue b { font-size: 13px; color: #3d684b; padding-top: 3px; }
+.phone-dialogue p { font-size: 18px; line-height: 1.35; margin: 0; }
+.phone-dialogue .caller { background: transparent; }
+.phone-dialogue .boundary { background: #dcebdc; border-left: 3px solid #4f805b; }
+.small-caption { margin-top: 14px; font-size: 14px; color: #55705d; }
+.handover-voice-grid { margin-top: 12px; }
+.handover-voice-grid .voice-diagram { height: 220px; margin: 0; }
+.compact-case { padding: 15px 20px; border: 1px solid var(--line); border-radius: 10px; background: #edf3ed; }
+.compact-case h2 { margin: 9px 0; font-size: 21px; }
+.compact-case dl { display: grid; grid-template-columns: 90px 1fr 90px 1fr 90px 1fr; gap: 8px 12px; font-size: 14px; line-height: 1.3; }
+.compact-case dt { color: #617564; }
+.compact-case dd { margin: 0; }
+.draft-fields { display: flex; gap: 20px; border-top: 1px solid var(--line); padding-top: 20px; margin-top: 13px; font-size: 17px; line-height: 1.6; }
+.draft-fields b { white-space: nowrap; color: #40644a; }
+.cost-feature { display: grid; grid-template-columns: 1.05fr 1fr; gap: 55px; margin-top: 40px; }
+.cost-number { font-size: 100px; line-height: 1.25; letter-spacing: -5px; color: #235d39; font-weight: 600; }
+.cost-number span { font-size: 22px; letter-spacing: 0; margin-left: 15px; font-weight: 400; }
+.cost-feature p { font-size: 20px; margin-top: 17px; line-height: 1.45; }
+.cost-feature section { border-left: 1px solid var(--line); padding-left: 35px; }
+.cost-feature h2 { margin-top: 10px; font-size: 32px; }
+.route-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 28px; }
+.route-comparison section { padding: 25px 28px; border: 1px solid var(--line); border-radius: 10px; }
+.route-comparison .preferred { background: #e7f0e7; border-color: #9bbb9e; }
+.route-comparison h2 { margin: 17px 0 12px; font-size: 28px; }
+.route-comparison p { font-size: 19px; line-height: 1.5; }
+.route-comparison ul { margin-top: 18px; padding-left: 17px; font-size: 16px; line-height: 1.6; list-style: disc; }
+.measurement-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 25px; }
+.measurement-grid section { border-top: 2px solid #94b39b; padding: 16px 10px 10px 0; }
+.measurement-grid h2 { font-size: 25px; margin-bottom: 10px; }
+.measurement-grid p { font-size: 18px; line-height: 1.45; }
+.decision-requests { display: grid; gap: 19px; margin-top: 35px; }
+.decision-requests section { display: grid; grid-template-columns: 45px 275px 1fr; gap: 18px; align-items: center; padding: 20px; background: #eaf1e9; border-radius: 8px; }
+.decision-requests section > span { font-size: 17px; color: #61856b; }
+.decision-requests h2 { font-size: 24px; }
+.decision-requests p { font-size: 19px; line-height: 1.4; }
+.slidev-layout .proposal-table { width: 100%; margin-top: 25px; border-collapse: collapse; font-size: 17px; line-height: 1.35; }
+.slidev-layout .proposal-table th { text-align: left; background: #dfeadf; color: #31583d; font-weight: 600; padding: 10px 15px; }
+.slidev-layout .proposal-table td { padding: 9px 15px; border-bottom: 1px solid #d4e0d5; vertical-align: top; }
+.proposal-table td:first-child { font-weight: 600; color: #31583d; }
+.proposal-table tr:nth-child(even) td { background: #f0f4ee; }
+.slidev-layout .responsibility-table { font-size: 14px; }
+.slidev-layout .responsibility-table th, .slidev-layout .responsibility-table td { padding: 10px; }
+.responsibility-table td:first-child { width: 16%; }
+.contract-grid { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 18px; margin-top: 26px; }
+.contract-grid section { padding: 20px; background: #eaf1e9; border-radius: 8px; }
+.contract-grid p { font-size: 17px; line-height: 1.6; margin-top: 13px; }
+.contract-grid h2 { font-size: 24px; line-height: 1.3; margin-top: 15px; }
+.contract-grid .contract-core { background: #d9e9da; }
+.cost-assumptions { font-size: 17px; margin-top: 22px; }
+.cost-table tr:last-child td { background: #dfeadf; font-weight: 600; }
+.cost-exclusions { font-size: 17px; line-height: 1.5; margin-top: 22px; }
+.slidev-layout .acceptance-table { font-size: 16px; }
+.slidev-layout .acceptance-table th, .slidev-layout .acceptance-table td { padding: 7px 13px; }
